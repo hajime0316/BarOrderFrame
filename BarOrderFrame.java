@@ -347,38 +347,72 @@ class AddItemScreen extends JPanel {
         /*******************************
          * カテゴリ画面作成
          *******************************/
-        JPanel category_screen = new JPanel(new BorderLayout());
+        JPanel category_screen = new JPanel(new GridLayout(1, 2, 5, 5));
         container.add(category_screen, "category_screen");
-        // テキスト作成
-        category_screen.add(new JLabel("カテゴリを選んでください", JLabel.CENTER), "North");
-        // カテゴリリスト作成
-        JPanel category_list = new JPanel(new GridLayout(5, 1, 5, 5));
-        category_screen.add(category_list, "Center");
-        //// ビールボタン
+        // 飲み物選択画面作成
+        JPanel drink_screen = new JPanel(new BorderLayout());
+        category_screen.add(drink_screen);
+        //// テキスト作成
+        drink_screen.add(new JLabel("飲み物", JLabel.CENTER), "North");
+        //// 飲み物リスト作成
+        JPanel drink_list = new JPanel(new GridLayout(3, 1, 5, 5));
+        drink_screen.add(drink_list, "Center");
+        ////// ビールボタン
         JButton beer_button = new JButton("ビール");
-        category_list.add(beer_button);
+        drink_list.add(beer_button);
         beer_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "beer_screen");
 			}
         });
-        //// カクテルボタン
+        ////// カクテルボタン
         JButton cocktail_button = new JButton("カクテル");
-        category_list.add(cocktail_button);
+        drink_list.add(cocktail_button);
         cocktail_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "cocktail_screen");
 			}
         });
-        //// ハイボールボタン
+        ////// ハイボールボタン
         JButton highball_button = new JButton("ハイボール");
-        category_list.add(highball_button);
+        drink_list.add(highball_button);
         highball_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "highball_screen");
 			}
         });
-        
+        // 料理選択画面作成
+        JPanel dishes_screen = new JPanel(new BorderLayout());
+        category_screen.add(dishes_screen);
+        //// テキスト作成
+        dishes_screen.add(new JLabel("料理", JLabel.CENTER), "North");
+        //// 料理リスト作成
+        JPanel dishes_list = new JPanel(new GridLayout(3, 1, 5, 5));
+        dishes_screen.add(dishes_list, "Center");
+        ////// 焼き鳥ボタン
+        JButton yakitori_button = new JButton("焼き鳥");
+        dishes_list.add(yakitori_button);
+        yakitori_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                layout.show(container, "yakitori_screen");
+			}
+        });
+        ////// 刺身ボタン
+        JButton sasimi_button = new JButton("刺身");
+        dishes_list.add(sasimi_button);
+        sasimi_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                layout.show(container, "sasimi_screen");
+			}
+        });
+        ////// サラダボタン
+        JButton salad_button = new JButton("サラダ");
+        dishes_list.add(salad_button);
+        salad_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                layout.show(container, "salad_screen");
+			}
+        });
 
         /*******************************
          * ビール画面作成
