@@ -349,7 +349,7 @@ class AddItemScreen extends JPanel {
          *******************************/
         JPanel category_screen = new JPanel(new GridLayout(1, 2, 5, 5));
         container.add(category_screen, "category_screen");
-        // 飲み物選択画面作成
+        // 飲み物画面作成
         JPanel drink_screen = new JPanel(new BorderLayout());
         category_screen.add(drink_screen);
         //// テキスト作成
@@ -381,7 +381,7 @@ class AddItemScreen extends JPanel {
                 layout.show(container, "highball_screen");
 			}
         });
-        // 料理選択画面作成
+        // 料理画面作成
         JPanel dishes_screen = new JPanel(new BorderLayout());
         category_screen.add(dishes_screen);
         //// テキスト作成
@@ -491,6 +491,84 @@ class AddItemScreen extends JPanel {
 			}
         });
         highball_screen.add(category_button3, "South");
+
+        /*******************************
+         * 焼き鳥画面作成
+         *******************************/
+        JPanel yakitori_screen = new JPanel(new BorderLayout());
+        container.add(yakitori_screen, "yakitori_screen");
+        // テキスト作成
+        yakitori_screen.add(new JLabel("焼き鳥を選んでください．", JLabel.CENTER), "North");
+        // 商品リスト作成
+        Item[] yakitori = new Item[5];
+        yakitori[0] = new Item("皮", 130);
+        yakitori[1] = new Item("もも", 130);
+        yakitori[2] = new Item("豚バラ", 130);
+        yakitori[3] = new Item("砂ずり", 130);
+        yakitori[4] = new Item("せせり", 130);
+        ChoicesList yakitori_list = new ChoicesList(yakitori, selected_item_list);
+        yakitori_screen.add(yakitori_list, "Center");
+        // カテゴリ選択に戻るボタン作成
+        JButton category_button4 = new JButton("カテゴリ選択に戻る．");
+        yakitori_screen.add(category_button4, "South");
+        category_button4.setPreferredSize(new Dimension(100,40));
+        category_button4.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                layout.show(container, "category_screen");
+			}
+        });
+
+        /*******************************
+         * 刺身画面作成
+         *******************************/
+        JPanel sasimi_screen = new JPanel(new BorderLayout());
+        container.add(sasimi_screen, "sasimi_screen");
+        // テキスト作成
+        sasimi_screen.add(new JLabel("刺身を選んでください．", JLabel.CENTER), "North");
+        // 商品リスト作成
+        Item[] sasimi = new Item[5];
+        sasimi[0] = new Item("まぐろ", 580);
+        sasimi[1] = new Item("サーモン", 480);
+        sasimi[2] = new Item("いか", 480);
+        sasimi[3] = new Item("たこ", 480);
+        sasimi[4] = new Item("えび", 480);
+        ChoicesList sasimi_list = new ChoicesList(sasimi, selected_item_list);
+        sasimi_screen.add(sasimi_list, "Center");
+        // カテゴリ選択に戻るボタン作成
+        JButton category_button5 = new JButton("カテゴリ選択に戻る．");
+        sasimi_screen.add(category_button5, "South");
+        category_button5.setPreferredSize(new Dimension(100,40));
+        category_button5.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                layout.show(container, "category_screen");
+			}
+        });
+        
+        /*******************************
+         * サラダ画面作成
+         *******************************/
+        JPanel salad_screen = new JPanel(new BorderLayout());
+        container.add(salad_screen, "salad_screen");
+        // テキスト作成
+        salad_screen.add(new JLabel("サラダを選んでください．", JLabel.CENTER), "North");
+        // 商品リスト作成
+        Item[] salad = new Item[5];
+        salad[0] = new Item("ポテトサラダ", 380);
+        salad[1] = new Item("トマトサラダ", 380);
+        salad[2] = new Item("海藻サラダ", 380);
+        salad[3] = new Item("グリーンサラダ", 380);
+        salad[4] = new Item("シーザーサラダ", 380);
+        ChoicesList salad_list = new ChoicesList(salad, selected_item_list);
+        salad_screen.add(salad_list, "Center");
+        // カテゴリ選択に戻るボタン作成
+        JButton category_button6 = new JButton("カテゴリ選択に戻る．");
+        salad_screen.add(category_button6, "South");
+        category_button6.setPreferredSize(new Dimension(100,40));
+        category_button6.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                layout.show(container, "category_screen");
+			}
+        });
     }
 
     public void show_category_screen()
