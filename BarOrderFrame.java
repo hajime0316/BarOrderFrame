@@ -18,7 +18,6 @@ class Item extends JLabel {
         this.setText(label_text);
         this.setHorizontalAlignment(JLabel.CENTER);
         this.setForeground(Color.black);
-//        this.setFont(new Font("MS　ゴシック", Font.PLAIN, 16));
         
         this.name = "";
         this.price = 0;
@@ -41,7 +40,6 @@ class Item extends JLabel {
         this.setText(label_text);
         this.setHorizontalAlignment(JLabel.CENTER);
         this.setForeground(Color.black);
-//        this.setFont(new Font("MS　ゴシック", Font.PLAIN, 16));
         
         this.name = name;
         this.price = price;
@@ -67,7 +65,6 @@ class Item extends JLabel {
         this.setText(label_text);
         this.setHorizontalAlignment(JLabel.CENTER);
         this.setForeground(Color.black);
-//        this.setFont(new Font("MS　ゴシック", Font.PLAIN, 16));
         
         this.name = name;
         this.price = price;
@@ -401,6 +398,7 @@ class AddItemScreen extends JPanel {
         beer_screen.add(beer_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button1 = new JButton("カテゴリ選択に戻る．");
+        category_button1.setPreferredSize(new Dimension(100,40));
         category_button1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
@@ -426,6 +424,7 @@ class AddItemScreen extends JPanel {
         cocktail_screen.add(cocktail_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button2 = new JButton("カテゴリ選択に戻る．");
+        category_button2.setPreferredSize(new Dimension(100,40));
         category_button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
@@ -451,6 +450,7 @@ class AddItemScreen extends JPanel {
         highball_screen.add(highball_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button3 = new JButton("カテゴリ選択に戻る．");
+        category_button3.setPreferredSize(new Dimension(100,40));
         category_button3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
@@ -502,6 +502,7 @@ class BarOrderFrame extends JFrame {
         selected_item_screen.add(selected_item_list, "Center");
         //// 注文ボタン作成
         JButton confirm_order_button = new JButton("注文する");
+        confirm_order_button.setPreferredSize(new Dimension(100,40));
         confirm_order_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 if(selected_item_list.is_empty()) {
