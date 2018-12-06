@@ -5,15 +5,15 @@ import java.awt.event.*;
 class ItemButton extends JButton {
     String name;
     int price;
-    int number;
+    int quantity;
 
-    public ItemButton(String name, int price, int number)
+    public ItemButton(String name, int price, int quantity)
     {
         super();
 
         this.name = name;
         this.price = price;
-        this.number = number;
+        this.quantity = quantity;
     }
 
     public void set_name(String name)
@@ -30,9 +30,9 @@ class ItemButton extends JButton {
         return;
     }
 
-    public void set_number(int number)
+    public void set_quantity(int quantity)
     {
-        this.number = number;
+        this.quantity = quantity;
 
         return;
     }
@@ -47,9 +47,9 @@ class ItemButton extends JButton {
         return this.price;
     }
 
-    public int get_number()
+    public int get_quantity()
     {
-        return this.number;
+        return this.quantity;
     }
 }
 
@@ -96,7 +96,7 @@ class Item extends JPanel {
         this.add(item_button, "East");
     }
 
-    public Item(String name, int price, int number)
+    public Item(String name, int price, int quantity)
     {
         super(new BorderLayout());
 
@@ -105,11 +105,11 @@ class Item extends JPanel {
         if(name == "") {
             label_text = "";
         }
-        else if(number <= 0){
+        else if(quantity <= 0){
             label_text = name + ": " + price + "‰~";
         }
         else {
-            label_text = name + ": " + price + "‰~ ~ " + number;
+            label_text = name + ": " + price + "‰~ ~ " + quantity;
         }
 
         // item_label‰Šú‰»
@@ -117,7 +117,7 @@ class Item extends JPanel {
         this.add(item_label, "Center");
 
         // item_button‰Šú‰»
-        item_button = new ItemButton(name, price, number);
+        item_button = new ItemButton(name, price, quantity);
         this.add(item_button, "East");
     }
 
@@ -132,11 +132,11 @@ class Item extends JPanel {
         if(item_button.name == "") {
             label_text = "";
         }
-        else if(item_button.number <= 0){
+        else if(item_button.quantity <= 0){
             label_text = item_button.name + ": " + item_button.price + "‰~";
         }
         else {
-            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.number;
+            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.quantity;
         }
 
         // ƒeƒLƒXƒgƒZƒbƒg
@@ -156,11 +156,11 @@ class Item extends JPanel {
         if(item_button.name == "") {
             label_text = "";
         }
-        else if(item_button.number <= 0){
+        else if(item_button.quantity <= 0){
             label_text = item_button.name + ": " + item_button.price + "‰~";
         }
         else {
-            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.number;
+            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.quantity;
         }
 
         // ƒeƒLƒXƒgƒZƒbƒg
@@ -169,22 +169,22 @@ class Item extends JPanel {
         return;
     }
 
-    public void set_number(int number)
+    public void set_quantity(int quantity)
     {
         String label_text;
 
         // ƒpƒ‰ƒ[ƒ^•ÏX
-        item_button.number = number;
+        item_button.quantity = quantity;
 
         // ƒeƒLƒXƒg¶¬
         if(item_button.name == "") {
             label_text = "";
         }
-        else if(item_button.number <= 0){
+        else if(item_button.quantity <= 0){
             label_text = item_button.name + ": " + item_button.price + "‰~";
         }
         else {
-            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.number;
+            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.quantity;
         }
 
         // ƒeƒLƒXƒgƒZƒbƒg
@@ -211,9 +211,9 @@ class Item extends JPanel {
         return item_button.price;
     }
 
-    public int get_number()
+    public int get_quantity()
     {
-        return item_button.number;
+        return item_button.quantity;
     }
 }
 
@@ -236,7 +236,7 @@ class SelectedItemList extends JPanel {
         }
     }
 
-    public int register_item(String name, int price, int number)
+    public int register_item(String name, int price, int quantity)
     {
         int res = 0;
         int i = 0;
@@ -245,12 +245,12 @@ class SelectedItemList extends JPanel {
             if(selected_item[i].get_name() == "") {
                 selected_item[i].set_name(name);
                 selected_item[i].set_price(price);
-                selected_item[i].set_number(number);
+                selected_item[i].set_quantity(quantity);
                 selected_item[i].repaint();
                 break;
             }
             else if(selected_item[i].get_name() == name) {
-                selected_item[i].set_number(number);
+                selected_item[i].set_quantity(quantity);
                 selected_item[i].repaint();
                 break;
             }
@@ -272,7 +272,7 @@ class SelectedItemList extends JPanel {
             if(selected_item[i].get_name() == name) {
                 selected_item[i].set_name("");
                 selected_item[i].set_price(0);
-                selected_item[i].set_number(0);
+                selected_item[i].set_quantity(0);
                 selected_item[i].repaint();
                 res = 0;
                 break;
@@ -282,11 +282,11 @@ class SelectedItemList extends JPanel {
         for(i = i + 1 ; i < 5; i++) {
             selected_item[i - 1].set_name(selected_item[i].get_name());
             selected_item[i - 1].set_price(selected_item[i].get_price());
-            selected_item[i - 1].set_number(selected_item[i].get_number());
+            selected_item[i - 1].set_quantity(selected_item[i].get_quantity());
             selected_item[i - 1].repaint();
             selected_item[i].set_name("");
             selected_item[i].set_price(0);
-            selected_item[i].set_number(0);
+            selected_item[i].set_quantity(0);
             selected_item[i].repaint();
         }
         
@@ -310,7 +310,7 @@ class SelectedItemList extends JPanel {
         int sum = 0;
 
         for(int i = 0; i < 5; i++) {
-            sum += selected_item[i].get_price() * selected_item[i].get_number();
+            sum += selected_item[i].get_price() * selected_item[i].get_quantity();
         }
 
         return sum;
@@ -321,7 +321,7 @@ class SelectedItemList extends JPanel {
         for(int i = 0; i < 5; i++) {
             selected_item[i].set_name("");
             selected_item[i].set_price(0);
-            selected_item[i].set_number(0);
+            selected_item[i].set_quantity(0);
         }
     }
 }
@@ -589,6 +589,8 @@ class AddItemScreen extends JPanel {
         return;
     }
 }
+
+//class 
 
 class BarOrderFrame extends JFrame implements ActionListener{
     Container container;
