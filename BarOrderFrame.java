@@ -599,26 +599,28 @@ class AddItemScreen extends JPanel {
     }
 }
 
-class SelectQuantityScreen extends JPanel {
-    String item_name;
-    int item_price;
+class SelectQuantityPanel extends JPanel {
     JLabel item_label;
     ItemButton[] number_key;
+    ItemButton cancel_order_key;
 
-    public SelectQuantityScreen(ActionListener action_listener) {
+    public SelectQuantityPanel(ActionListener action_listener) {
         super(new GridLayout(3, 1, 5, 5));
+
+        // 「数量を選んでください」
+        this.add(new JLabel("数量を選んでください．", JLabel.CENTER));
 
         // item_label初期化
         item_label = new JLabel("", JLabel.CENTER);
         this.add(item_label);
 
-        // 「数量を選んでください」
-        this.add(new JLabel("数量を選んでください．", JLabel.CENTER));
-
-        // ソフトキーボード作成
+        // コントローラ作成
+        JPanel controller = new JPanel(new BorderLayout());
+        this.add(controller);
+        //// ソフトキーボード作成
         JPanel soft_keyboard = new JPanel(new GridLayout(1, 6, 5, 5));
-        this.add(soft_keyboard);
-        //// 数字キー
+        controller.add(soft_keyboard, "Center");
+        ////// 数字キー
         number_key = new ItemButton[5];
         for(int i = 0; i < 5; i++) {
             number_key[i] = new ItemButton("数字キー", 0, i + 1);
@@ -627,20 +629,22 @@ class SelectQuantityScreen extends JPanel {
             number_key[i].addActionListener(action_listener);
         }
         //// 「注文しない」キー
-        ItemButton cancel_order_key = new ItemButton();
-        soft_keyboard.add(cancel_order_key);
+        cancel_order_key = new ItemButton();
+        controller.add(cancel_order_key, "East");
+        cancel_order_key.setText("注文しない");
         cancel_order_key.addActionListener(action_listener);
     }
 
     public void set_item(String item_name, int item_price) {
-        this.item_name = item_name;
-        this.item_price = item_price;
-
         // 数字キーの中にデータを格納
         for(int i = 0; i < 5; i++ ) {
             this.number_key[i].set_name(item_name);
             this.number_key[i].set_price(item_price);
         }
+
+        // 「注文しない」ボタンにデータを格納
+        this.cancel_order_key.set_name(item_name);
+        this.cancel_order_key.set_price(item_price);
 
         //　item_label変更
         item_label.setText(item_name + ": " + item_price + "円");
@@ -648,123 +652,106 @@ class SelectQuantityScreen extends JPanel {
 
         return;
     }
-
-    public String get_item_name()
-    {
-        return this.item_name;
-    }
-
-    public int get_item_price(){
-        return this.item_price;
-    }
 }
 
 class BarOrderFrame extends JFrame implements ActionListener{
     Container container;
-    Item test_item;
-    // CardLayout container_layout;
+    CardLayout container_layout;
     SelectedItemList selected_item_list;
     AddItemScreen add_item_screen;
-    SelectQuantityScreen select_quantity_screen;
-    // JLabel total_cost_label;
-    int button_counter = 0;
-    
-    // public BarOrderFrame (String title) {
-    //     super(title);
+    SelectQuantityPanel select_quantity_panel;
+    JLabel total_cost_label;
 
-    //     container = this.getContentPane();
-    //     container.setBackground(Color.white);
-    //     container.setForeground(Color.green);
-    //     container_layout = new CardLayout();
-    //     container.setLayout(container_layout);
-
-    //     // selected_item_list作成
-    //     selected_item_list = new SelectedItemList();
-
-    //     /*****************************
-    //      * 商品選択画面作成
-    //      *****************************/
-    //     JPanel selecting_item_screen = new JPanel(new GridLayout(1, 2, 5, 5));
-    //     container.add(selecting_item_screen, "selecting_item_screen");
-    //     // 商品追加画面作成
-    //     AddItemScreen add_item_screen = new AddItemScreen(selected_item_list);
-    //     selecting_item_screen.add(add_item_screen);
-    //     // 選んだ商品画面作成
-    //     JPanel selected_item_screen = new JPanel(new BorderLayout());
-    //     selecting_item_screen.add(selected_item_screen);
-    //     //// テキスト作成
-    //     selected_item_screen.add(new JLabel("選んだ商品", JLabel.CENTER), "North");
-    //     //// selected_item_list画面に追加
-    //     selected_item_screen.add(selected_item_list, "Center");
-    //     //// 注文ボタン作成
-    //     JButton confirm_order_button = new JButton("注文する");
-    //     confirm_order_button.setPreferredSize(new Dimension(100,40));
-    //     confirm_order_button.addActionListener(new ActionListener(){
-	// 		public void actionPerformed(ActionEvent e){
-    //             if(selected_item_list.is_empty()) {
-
-    //             }
-    //             else {
-    //                 container_layout.show(container, "confirm_order_screen");
-    //                 total_cost_label.setText("合計金額は " + selected_item_list.sum_all_item_price() + "円です");
-    //             }
-	// 		}
-    //     });
-    //     selected_item_screen.add(confirm_order_button, "South");
-    //     /*****************************
-    //      * 注文確認画面作成
-    //      *****************************/
-    //     JPanel confirm_order_screen = new JPanel(new GridLayout(3, 1, 5, 5));
-    //     container.add(confirm_order_screen, "confirm_order_screen");
-    //     // 合計金額は・・・円です
-    //     total_cost_label = new JLabel("合計金額は・・・円です", JLabel.CENTER);
-    //     confirm_order_screen.add(total_cost_label);
-    //     // 注文しますか
-    //     confirm_order_screen.add(new JLabel("注文しますか", JLabel.CENTER));
-    //     // 「はい」「いいえ」ボタン作成
-    //     JPanel yes_no_panel = new JPanel(new GridLayout(1, 2, 5, 5));
-    //     confirm_order_screen.add(yes_no_panel);
-    //     //// 「はい」ボタン
-    //     JButton yes_button = new JButton("はい");
-    //     yes_no_panel.add(yes_button);
-    //     yes_button.addActionListener(new ActionListener(){
-	// 		public void actionPerformed(ActionEvent e){
-    //             container_layout.show(container, "selecting_item_screen");
-    //             selected_item_list.clear_list();
-    //             add_item_screen.show_category_screen();
-	// 		}
-    //     });
-    //     //// 「いいえ」ボタン
-    //     JButton no_button = new JButton("いいえ");
-    //     yes_no_panel.add(no_button);
-    //     no_button.addActionListener(new ActionListener(){
-	// 		public void actionPerformed(ActionEvent e){
-    //             container_layout.show(container, "selecting_item_screen");
-	// 		}
-    //     });
-
-    //     this.setLocation(200, 100);
-    //     this.setSize(640, 480);
-    //     this.setVisible(true);
-    // }
-
-    public BarOrderFrame (String title)
-    {
+    public BarOrderFrame (String title) {
         super(title);
 
         container = this.getContentPane();
         container.setBackground(Color.white);
         container.setForeground(Color.green);
-        container.setLayout(new GridLayout(3,1,5,5));
+        container_layout = new CardLayout();
+        container.setLayout(container_layout);
 
-        add_item_screen = new AddItemScreen(this);
-        container.add(add_item_screen);
-
+        /*****************************
+         * 商品選択画面作成
+         *****************************/
+        JPanel selecting_item_screen = new JPanel(new GridLayout(1, 2, 5, 5));
+        container.add(selecting_item_screen, "selecting_item_screen");
+        // 商品追加画面作成
+        AddItemScreen add_item_screen = new AddItemScreen(this);
+        selecting_item_screen.add(add_item_screen);
+        // 選んだ商品画面作成
+        JPanel selected_item_screen = new JPanel(new BorderLayout());
+        selecting_item_screen.add(selected_item_screen);
+        //// テキスト作成
+        selected_item_screen.add(new JLabel("選んだ商品", JLabel.CENTER), "North");
+        //// selected_item_list作成
         selected_item_list = new SelectedItemList(this);
-        container.add(selected_item_list);
+        selected_item_screen.add(selected_item_list, "Center");
+        //// 注文ボタン作成
+        JButton confirm_order_button = new JButton("注文する");
+        selected_item_screen.add(confirm_order_button, "South");
+        confirm_order_button.setPreferredSize(new Dimension(100,40));
+        confirm_order_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                if(selected_item_list.is_empty()) {
 
-        select_quantity_screen = new SelectQuantityScreen(this);
-        container.add(select_quantity_screen);
+                }
+                else {
+                    container_layout.show(container, "confirm_order_screen");
+                    total_cost_label.setText("合計金額は " + selected_item_list.sum_all_item_price() + "円です");
+                }
+			}
+        });
+
+        /*****************************
+         * 数量選択画面作成
+         *****************************/
+        JPanel select_quantity_screen = new JPanel(new BorderLayout());
+        container.add(select_quantity_screen, "select_quantity_screen");
+        // 数量選択パネル作成
+        select_quantity_panel = new SelectQuantityPanel(this);
+        select_quantity_screen.add(select_quantity_panel, "Center");
+        // キャンセルボタン作成
+        JButton cancel_button = new JButton("キャンセル");
+        select_quantity_screen.add(cancel_button, "South");
+        cancel_button.setPreferredSize(new Dimension(100,70));
+        cancel_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                container_layout.show(container, "selecting_item_screen");
+			}
+        });
+
+        /*****************************
+         * 注文確認画面作成
+         *****************************/
+        JPanel confirm_order_screen = new JPanel(new GridLayout(3, 1, 5, 5));
+        container.add(confirm_order_screen, "confirm_order_screen");
+        // 合計金額は・・・円です
+        total_cost_label = new JLabel("合計金額は・・・円です", JLabel.CENTER);
+        confirm_order_screen.add(total_cost_label);
+        // 注文しますか
+        confirm_order_screen.add(new JLabel("注文しますか", JLabel.CENTER));
+        // 「はい」「いいえ」ボタン作成
+        JPanel yes_no_panel = new JPanel(new GridLayout(1, 2, 5, 5));
+        confirm_order_screen.add(yes_no_panel);
+        //// 「はい」ボタン
+        JButton yes_button = new JButton("はい");
+        yes_no_panel.add(yes_button);
+        yes_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                container_layout.show(container, "selecting_item_screen");
+                selected_item_list.clear_list();
+                add_item_screen.show_category_screen();
+			}
+        });
+        //// 「いいえ」ボタン
+        JButton no_button = new JButton("いいえ");
+        yes_no_panel.add(no_button);
+        no_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                container_layout.show(container, "selecting_item_screen");
+			}
+        });
 
         this.setLocation(200, 100);
         this.setSize(640, 480);
@@ -775,18 +762,36 @@ class BarOrderFrame extends JFrame implements ActionListener{
     {
         ItemButton	pushed_item_button = (ItemButton)e.getSource();
 
+        /****************************************
+         * 商品選択画面のボタンに対するアクション
+         ****************************************/
+        // 「追加」ボタン
         if(pushed_item_button.getText() == "追加") {
-            select_quantity_screen.set_item(pushed_item_button.get_name(), pushed_item_button.get_price());
+            // 数量選択画面に商品を登録
+            select_quantity_panel.set_item(pushed_item_button.get_name(), pushed_item_button.get_price());
+            // 数量選択画面に移動
+            container_layout.show(container, "select_quantity_screen");
         }
-        else if(pushed_item_button.getText() == "数量変更")
-        {
-            if(pushed_item_button.name == "") {
-                
-            }
-            else {
-                selected_item_list.delete_item(pushed_item_button.name);
+        // 「数量変更」ボタン
+        else if(pushed_item_button.getText() == "数量変更") {
+            if(pushed_item_button.get_name() != "") {   // 空でないことを確認
+                // 数量選択画面に商品を登録
+                select_quantity_panel.set_item(pushed_item_button.get_name(), pushed_item_button.get_price());
+                // 数量選択画面に移動
+                container_layout.show(container, "select_quantity_screen");
             }
         }
+        /****************************************
+         * 数量選択画面のボタンに対するアクション
+         ****************************************/
+        // 「注文しない」ボタン
+        else if(pushed_item_button.getText() == "注文しない") {
+            // 選択された商品リストから商品を削除
+            selected_item_list.delete_item(pushed_item_button.get_name());
+            // 商品選択画面に移動
+            container_layout.show(container, "selecting_item_screen");
+        }
+        // ソフトキーボード
         else if(Integer.parseInt(pushed_item_button.getText()) == 1
                     || Integer.parseInt(pushed_item_button.getText()) == 2
                     || Integer.parseInt(pushed_item_button.getText()) == 3
@@ -800,9 +805,8 @@ class BarOrderFrame extends JFrame implements ActionListener{
             else {
                 selected_item_list.register_item(pushed_item_button.name, pushed_item_button.price, pushed_item_button.quantity);
             }
-        }
-        else if(pushed_item_button.getText() == "注文しない") {
-
+            // 商品選択画面に移動
+            container_layout.show(container, "selecting_item_screen");
         }
     }
 
