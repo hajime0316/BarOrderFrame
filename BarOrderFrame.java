@@ -227,7 +227,7 @@ class SelectedItemList extends JPanel {
         for(int i = 0; i < 5; i++) {
             // selected_item初期化
             selected_item[i] = new Item();
-            this.add(selected_item_panel[i]);
+            this.add(selected_item[i]);
 
             // selected_itemのボタンパラメータを設定
             selected_item[i].set_button_param("数量の変更", action_listener);
@@ -261,14 +261,13 @@ class SelectedItemList extends JPanel {
         return res;
     }
 
-    public int delete_item(Item item) 
+    public int delete_item(String item_name) 
     {
         int res = 1;
-        int index = 0;
         int i = 0;
 
         for(i = 0; i < 5; i++) {
-            if(selected_item[i].get_name() == item.get_name()) {
+            if(selected_item[i].get_name() == item_name) {
                 selected_item[i].set_name("");
                 selected_item[i].set_price(0);
                 selected_item[i].set_number(0);
@@ -282,6 +281,10 @@ class SelectedItemList extends JPanel {
             selected_item[i - 1].set_name(selected_item[i].get_name());
             selected_item[i - 1].set_price(selected_item[i].get_price());
             selected_item[i - 1].set_number(selected_item[i].get_number());
+            selected_item[i - 1].repaint();
+            selected_item[i].set_name("");
+            selected_item[i].set_price(0);
+            selected_item[i].set_number(0);
             selected_item[i].repaint();
         }
         
@@ -618,8 +621,9 @@ class BarOrderFrame extends JFrame implements ActionListener{
     Container container;
     Item test_item;
     // CardLayout container_layout;
-    // SelectedItemList selected_item_list;
+    SelectedItemList selected_item_list;
     // JLabel total_cost_label;
+    int button_counter = 0;
     
     // public BarOrderFrame (String title) {
     //     super(title);
@@ -709,17 +713,26 @@ class BarOrderFrame extends JFrame implements ActionListener{
         container.setForeground(Color.green);
         //container.setLayout(new GridLayout(3,3,5,5));
 
-        test_item = new Item("test", 100);
-        test_item.set_button_param("追加", this);
-        container.add(test_item);
+        selected_item_list = new SelectedItemList(this);
+        container.add(selected_item_list);
 
         this.setLocation(200, 100);
         this.setSize(640, 480);
         this.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e){
-        test_item.set_name("Push");
+    public void actionPerformed(ActionEvent e)
+    {
+        button_counter++;
+        ItemButton	pushed_item_button = (ItemButton) e.getSource();
+
+        if(pushed_item_button.name == "") {
+            Item item = new Item("テスト" + button_counter, button_counter * 100, button_counter);
+            selected_item_list.register_item(item);
+        }
+        else {
+            selected_item_list.delete_item(pushed_item_button.name);
+        }
     }
 
     public static void main(String[] args) {
