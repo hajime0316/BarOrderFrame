@@ -7,6 +7,15 @@ class ItemButton extends JButton {
     int price;
     int quantity;
 
+    public ItemButton()
+    {
+        super();
+
+        this.name = "";
+        this.price = 0;
+        this.quantity = 0;
+    }
+
     public ItemButton(String name, int price, int quantity)
     {
         super();
@@ -590,13 +599,73 @@ class AddItemScreen extends JPanel {
     }
 }
 
-//class 
+class SelectQuantityScreen extends JPanel {
+    String item_name;
+    int item_price;
+    JLabel item_label;
+    ItemButton[] number_key;
+
+    public SelectQuantityScreen(ActionListener action_listener) {
+        super(new GridLayout(3, 1, 5, 5));
+
+        // item_label初期化
+        item_label = new JLabel("", JLabel.CENTER);
+        this.add(item_label);
+
+        // 「数量を選んでください」
+        this.add(new JLabel("数量を選んでください．", JLabel.CENTER));
+
+        // ソフトキーボード作成
+        JPanel soft_keyboard = new JPanel(new GridLayout(1, 6, 5, 5));
+        this.add(soft_keyboard);
+        //// 数字キー
+        number_key = new ItemButton[5];
+        for(int i = 0; i < 5; i++) {
+            number_key[i] = new ItemButton("数字キー", 0, i + 1);
+            soft_keyboard.add(number_key[i]);
+            number_key[i].setText(String.valueOf(i + 1));
+            number_key[i].addActionListener(action_listener);
+        }
+        //// 「注文しない」キー
+        ItemButton cancel_order_key = new ItemButton();
+        soft_keyboard.add(cancel_order_key);
+        cancel_order_key.addActionListener(action_listener);
+    }
+
+    public void set_item(String item_name, int item_price) {
+        this.item_name = item_name;
+        this.item_price = item_price;
+
+        // 数字キーの中にデータを格納
+        for(int i = 0; i < 5; i++ ) {
+            this.number_key[i].set_name(item_name);
+            this.number_key[i].set_price(item_price);
+        }
+
+        //　item_label変更
+        item_label.setText(item_name + ": " + item_price + "円");
+        this.repaint();
+
+        return;
+    }
+
+    public String get_item_name()
+    {
+        return this.item_name;
+    }
+
+    public int get_item_price(){
+        return this.item_price;
+    }
+}
 
 class BarOrderFrame extends JFrame implements ActionListener{
     Container container;
     Item test_item;
     // CardLayout container_layout;
     SelectedItemList selected_item_list;
+    AddItemScreen add_item_screen;
+    SelectQuantityScreen select_quantity_screen;
     // JLabel total_cost_label;
     int button_counter = 0;
     
@@ -686,13 +755,16 @@ class BarOrderFrame extends JFrame implements ActionListener{
         container = this.getContentPane();
         container.setBackground(Color.white);
         container.setForeground(Color.green);
-        container.setLayout(new GridLayout(1,2,5,5));
+        container.setLayout(new GridLayout(3,1,5,5));
 
-        AddItemScreen add_item_screen = new AddItemScreen(this);
+        add_item_screen = new AddItemScreen(this);
         container.add(add_item_screen);
 
         selected_item_list = new SelectedItemList(this);
         container.add(selected_item_list);
+
+        select_quantity_screen = new SelectQuantityScreen(this);
+        container.add(select_quantity_screen);
 
         this.setLocation(200, 100);
         this.setSize(640, 480);
@@ -701,11 +773,10 @@ class BarOrderFrame extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e)
     {
-        button_counter++;
-        ItemButton	pushed_item_button = (ItemButton) e.getSource();
+        ItemButton	pushed_item_button = (ItemButton)e.getSource();
 
         if(pushed_item_button.getText() == "追加") {
-            selected_item_list.register_item(pushed_item_button.get_name(), pushed_item_button.get_price(), 1);
+            select_quantity_screen.set_item(pushed_item_button.get_name(), pushed_item_button.get_price());
         }
         else if(pushed_item_button.getText() == "数量変更")
         {
@@ -715,6 +786,23 @@ class BarOrderFrame extends JFrame implements ActionListener{
             else {
                 selected_item_list.delete_item(pushed_item_button.name);
             }
+        }
+        else if(Integer.parseInt(pushed_item_button.getText()) == 1
+                    || Integer.parseInt(pushed_item_button.getText()) == 2
+                    || Integer.parseInt(pushed_item_button.getText()) == 3
+                    || Integer.parseInt(pushed_item_button.getText()) == 4
+                    || Integer.parseInt(pushed_item_button.getText()) == 5){
+
+            // 商品を登録
+            if(selected_item_list.is_full()) {
+
+            }
+            else {
+                selected_item_list.register_item(pushed_item_button.name, pushed_item_button.price, pushed_item_button.quantity);
+            }
+        }
+        else if(pushed_item_button.getText() == "注文しない") {
+
         }
     }
 
