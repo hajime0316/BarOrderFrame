@@ -381,25 +381,25 @@ class AddItemScreen extends JPanel {
         JButton beer_button = new JButton("ビール");
         drink_list.add(beer_button);
         beer_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "beer_screen");
-			}
+            }
         });
         ////// カクテルボタン
         JButton cocktail_button = new JButton("カクテル");
         drink_list.add(cocktail_button);
         cocktail_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "cocktail_screen");
-			}
+            }
         });
         ////// ハイボールボタン
         JButton highball_button = new JButton("ハイボール");
         drink_list.add(highball_button);
         highball_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "highball_screen");
-			}
+            }
         });
         // 料理画面作成
         JPanel dishes_screen = new JPanel(new BorderLayout());
@@ -413,25 +413,25 @@ class AddItemScreen extends JPanel {
         JButton yakitori_button = new JButton("焼き鳥");
         dishes_list.add(yakitori_button);
         yakitori_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "yakitori_screen");
-			}
+            }
         });
         ////// 刺身ボタン
         JButton sasimi_button = new JButton("刺身");
         dishes_list.add(sasimi_button);
         sasimi_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "sasimi_screen");
-			}
+            }
         });
         ////// サラダボタン
         JButton salad_button = new JButton("サラダ");
         dishes_list.add(salad_button);
         salad_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "salad_screen");
-			}
+            }
         });
 
         /*******************************
@@ -454,9 +454,9 @@ class AddItemScreen extends JPanel {
         JButton category_button1 = new JButton("カテゴリ選択に戻る．");
         category_button1.setPreferredSize(new Dimension(100,40));
         category_button1.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
-			}
+            }
         });
         beer_screen.add(category_button1, "South");
 
@@ -480,9 +480,9 @@ class AddItemScreen extends JPanel {
         JButton category_button2 = new JButton("カテゴリ選択に戻る．");
         category_button2.setPreferredSize(new Dimension(100,40));
         category_button2.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
-			}
+            }
         });
         cocktail_screen.add(category_button2, "South");
 
@@ -506,9 +506,9 @@ class AddItemScreen extends JPanel {
         JButton category_button3 = new JButton("カテゴリ選択に戻る．");
         category_button3.setPreferredSize(new Dimension(100,40));
         category_button3.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
-			}
+            }
         });
         highball_screen.add(category_button3, "South");
 
@@ -533,9 +533,9 @@ class AddItemScreen extends JPanel {
         yakitori_screen.add(category_button4, "South");
         category_button4.setPreferredSize(new Dimension(100,40));
         category_button4.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
-			}
+            }
         });
 
         /*******************************
@@ -559,9 +559,9 @@ class AddItemScreen extends JPanel {
         sasimi_screen.add(category_button5, "South");
         category_button5.setPreferredSize(new Dimension(100,40));
         category_button5.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
-			}
+            }
         });
         
         /*******************************
@@ -585,9 +585,9 @@ class AddItemScreen extends JPanel {
         salad_screen.add(category_button6, "South");
         category_button6.setPreferredSize(new Dimension(100,40));
         category_button6.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 layout.show(container, "category_screen");
-			}
+            }
         });
     }
 
@@ -692,7 +692,7 @@ class BarOrderFrame extends JFrame implements ActionListener{
         selected_item_screen.add(confirm_order_button, "South");
         confirm_order_button.setPreferredSize(new Dimension(100,40));
         confirm_order_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 if(selected_item_list.is_empty()) {
 
                 }
@@ -700,7 +700,7 @@ class BarOrderFrame extends JFrame implements ActionListener{
                     container_layout.show(container, "confirm_order_screen");
                     total_cost_label.setText("合計金額は " + selected_item_list.sum_all_item_price() + "円です");
                 }
-			}
+            }
         });
 
         /*****************************
@@ -716,9 +716,9 @@ class BarOrderFrame extends JFrame implements ActionListener{
         select_quantity_screen.add(cancel_button, "South");
         cancel_button.setPreferredSize(new Dimension(100,70));
         cancel_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 container_layout.show(container, "selecting_item_screen");
-			}
+            }
         });
 
         /*****************************
@@ -738,19 +738,19 @@ class BarOrderFrame extends JFrame implements ActionListener{
         JButton yes_button = new JButton("はい");
         yes_no_panel.add(yes_button);
         yes_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 container_layout.show(container, "selecting_item_screen");
                 selected_item_list.clear_list();
                 add_item_screen.show_category_screen();
-			}
+            }
         });
         //// 「いいえ」ボタン
         JButton no_button = new JButton("いいえ");
         yes_no_panel.add(no_button);
         no_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 container_layout.show(container, "selecting_item_screen");
-			}
+            }
         });
 
         this.setLocation(200, 100);
@@ -760,7 +760,7 @@ class BarOrderFrame extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent e)
     {
-        ItemButton	pushed_item_button = (ItemButton)e.getSource();
+        ItemButton pushed_item_button = (ItemButton)e.getSource();
 
         /****************************************
          * 商品選択画面のボタンに対するアクション
@@ -811,6 +811,6 @@ class BarOrderFrame extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args) {
-		BarOrderFrame frame = new BarOrderFrame("居酒屋注文");
-	}
+        BarOrderFrame frame = new BarOrderFrame("居酒屋注文");
+    }
 }
