@@ -1,92 +1,32 @@
-import javax.swing.*;
+fimport javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-class Item extends JLabel {
+class ItemButton extends JButton {
     String name;
     int price;
-    int number;
+    int quantity;
 
-    public Item()
+    public ItemButton()
     {
         super();
 
-        String label_text;
-
-        label_text = "";
-
-        this.setText(label_text);
-        this.setHorizontalAlignment(JLabel.CENTER);
-        this.setForeground(Color.black);
-        
         this.name = "";
         this.price = 0;
-        this.number = 0;
+        this.quantity = 0;
     }
 
-    public Item(String name, int price)
+    public ItemButton(String name, int price, int quantity)
     {
         super();
 
-        String label_text;
-        
-        if(name == "") {
-            label_text = "";
-        }
-        else {
-            label_text = name + ": " + price + "円";
-        }
-
-        this.setText(label_text);
-        this.setHorizontalAlignment(JLabel.CENTER);
-        this.setForeground(Color.black);
-        
         this.name = name;
         this.price = price;
-        this.number = 0;
-    }
-
-    public Item(String name, int price, int number)
-    {
-        super();
-
-        String label_text;
-        
-        if(name == "") {
-            label_text = "";
-        }
-        else if(number <= 0){
-            label_text = name + ": " + price + "円";
-        }
-        else {
-            label_text = name + ": " + price + "円 × " + number;
-        }
-
-        this.setText(label_text);
-        this.setHorizontalAlignment(JLabel.CENTER);
-        this.setForeground(Color.black);
-        
-        this.name = name;
-        this.price = price;
-        this.number = number;
+        this.quantity = quantity;
     }
 
     public void set_name(String name)
     {
-        String label_text;
-        
-        if(name == "") {
-            label_text = "";
-        }
-        else if(number <= 0){
-            label_text = name + ": " + price + "円";
-        }
-        else {
-            label_text = name + ": " + price + "円 × " + number;
-        }
-
-        this.setText(label_text);
-
         this.name = name;
 
         return;
@@ -94,55 +34,15 @@ class Item extends JLabel {
 
     public void set_price(int price)
     {
-        String label_text;
-        
-        if(name == "") {
-            label_text = "";
-        }
-        else if(number <= 0){
-            label_text = name + ": " + price + "円";
-        }
-        else {
-            label_text = name + ": " + price + "円 × " + number;
-        }
-
-        this.setText(label_text);
-
         this.price = price;
 
         return;
     }
 
-    public void set_number(int number)
+    public void set_quantity(int quantity)
     {
-        String label_text;
-        
-        if(name == "") {
-            label_text = "";
-        }
-        else if(number <= 0){
-            label_text = name + ": " + price + "円";
-        }
-        else {
-            label_text = name + ": " + price + "円 × " + number;
-        }
+        this.quantity = quantity;
 
-        this.setText(label_text);
-
-        this.number = number;
-
-        return;
-    }
-
-    public void increment_number()
-    {
-        set_number(number + 1);
-        return;
-    }
-
-    public void decrement_number()
-    {
-        set_number(number - 1);
         return;
     }
 
@@ -156,100 +56,249 @@ class Item extends JLabel {
         return this.price;
     }
 
-    public int get_number()
+    public int get_quantity()
     {
-        return this.number;
+        return this.quantity;
+    }
+}
+
+class Item extends JPanel {
+    ItemButton item_button;
+    JLabel item_label;
+
+    public Item()
+    {
+        super(new BorderLayout());
+
+        // item_labelのテキスト作成
+        String label_text;
+        label_text = "";
+
+        // item_label初期化
+        item_label = new JLabel(label_text, JLabel.CENTER);
+        this.add(item_label, "Center");
+
+        // item_button初期化
+        item_button = new ItemButton("", 0, 0);
+        this.add(item_button, "East");
+    }
+
+    public Item(String name, int price)
+    {
+        super(new BorderLayout());
+
+        // item_labelのテキスト作成
+        String label_text;
+        if(name == "") {
+            label_text = "";
+        }
+        else {
+            label_text = name + ": " + price + "円";
+        }
+
+        // item_label初期化
+        item_label = new JLabel(label_text, JLabel.CENTER);
+        this.add(item_label, "Center");
+
+        // item_button初期化
+        item_button = new ItemButton(name, price, 0);
+        this.add(item_button, "East");
+    }
+
+    public Item(String name, int price, int quantity)
+    {
+        super(new BorderLayout());
+
+        // item_labelのテキスト作成
+        String label_text;
+        if(name == "") {
+            label_text = "";
+        }
+        else if(quantity <= 0){
+            label_text = name + ": " + price + "円";
+        }
+        else {
+            label_text = name + ": " + price + "円 × " + quantity;
+        }
+
+        // item_label初期化
+        item_label = new JLabel(label_text, JLabel.CENTER);
+        this.add(item_label, "Center");
+
+        // item_button初期化
+        item_button = new ItemButton(name, price, quantity);
+        this.add(item_button, "East");
+    }
+
+    public void set_name(String name)
+    {
+        String label_text;
+
+        // パラメータ変更
+        item_button.name = name;
+        
+        // テキスト生成
+        if(item_button.name == "") {
+            label_text = "";
+        }
+        else if(item_button.quantity <= 0){
+            label_text = item_button.name + ": " + item_button.price + "円";
+        }
+        else {
+            label_text = item_button.name + ": " + item_button.price + "円 × " + item_button.quantity;
+        }
+
+        // テキストセット
+        item_label.setText(label_text);
+
+        return;
+    }
+
+    public void set_price(int price)
+    {
+        String label_text;
+
+        // パラメータ変更
+        item_button.price = price;
+
+        // テキスト生成
+        if(item_button.name == "") {
+            label_text = "";
+        }
+        else if(item_button.quantity <= 0){
+            label_text = item_button.name + ": " + item_button.price + "円";
+        }
+        else {
+            label_text = item_button.name + ": " + item_button.price + "円 × " + item_button.quantity;
+        }
+
+        // テキストセット
+        item_label.setText(label_text);
+
+        return;
+    }
+
+    public void set_quantity(int quantity)
+    {
+        String label_text;
+
+        // パラメータ変更
+        item_button.quantity = quantity;
+
+        // テキスト生成
+        if(item_button.name == "") {
+            label_text = "";
+        }
+        else if(item_button.quantity <= 0){
+            label_text = item_button.name + ": " + item_button.price + "円";
+        }
+        else {
+            label_text = item_button.name + ": " + item_button.price + "円 × " + item_button.quantity;
+        }
+
+        // テキストセット
+        item_label.setText(label_text);
+
+        return;
+    }
+
+    public void set_button_param(String button_text, ActionListener action_listener)
+    {
+        item_button.setText(button_text);
+        item_button.addActionListener(action_listener);
+
+        return;
+    }
+
+    public String get_name()
+    {
+        return item_button.name;
+    }
+
+    public int get_price()
+    {
+        return item_button.price;
+    }
+
+    public int get_quantity()
+    {
+        return item_button.quantity;
     }
 }
 
 class SelectedItemList extends JPanel {
     Item[] selected_item;
-    JButton[] delete_button;
-    JPanel[] selected_item_panel;
 
-    public SelectedItemList ()
+    public SelectedItemList (ActionListener action_listener)
     {
         super(new GridLayout(5,1,5,5));
 
         selected_item = new Item[5];
-        delete_button = new JButton[5];
-        selected_item_panel = new JPanel[5];
 
         for(int i = 0; i < 5; i++) {
             // selected_item初期化
             selected_item[i] = new Item();
+            this.add(selected_item[i]);
 
-            // delete_button初期化
-            delete_button[i] = new JButton("一つ減らす");
-            delete_button[i].addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    int index = 0;
-
-                    JButton	btn = (JButton) e.getSource();
-                    for(int i = 0; i < 5; i++) {
-                        if(btn == delete_button[i]) {
-                            index = i;
-                            break;
-                        }
-                    }
-
-                    if(selected_item[index].get_number() >= 2) {
-                        selected_item[index].decrement_number();
-                        selected_item_panel[index].repaint();
-                    }
-                    else {
-                        for(int i = index; i < 4; i++) {
-                            selected_item[i].set_name(selected_item[(i + 1)].get_name());
-                            selected_item[i].set_price(selected_item[(i + 1)].get_price());
-                            selected_item[i].set_number(selected_item[(i + 1)].get_number());
-                            selected_item_panel[i].repaint();
-                        }
-                        selected_item[4].set_name("");
-                        selected_item[4].set_price(0);
-                        selected_item_panel[4].repaint();
-                    }
-                }
-            });
-
-            // selected_item_panel初期化
-            selected_item_panel[i] = new JPanel(new BorderLayout());
-            selected_item_panel[i].add(selected_item[i], "Center");
-            selected_item_panel[i].add(delete_button[i], "East");
-
-            // 自身に追加
-            this.add(selected_item_panel[i]);
+            // selected_itemのボタンパラメータを設定
+            selected_item[i].set_button_param("数量変更", action_listener);
         }
     }
 
-    public int register_item(Item item)
+    public int register_item(String name, int price, int quantity)
     {
         int res = 0;
         int i = 0;
 
         for(i = 0; i < 5; i++) {
             if(selected_item[i].get_name() == "") {
-                selected_item[i].set_name(item.get_name());
-                selected_item[i].set_price(item.get_price());
-                selected_item[i].set_number(1);
-                selected_item_panel[i].repaint();
+                selected_item[i].set_name(name);
+                selected_item[i].set_price(price);
+                selected_item[i].set_quantity(quantity);
+                selected_item[i].repaint();
                 break;
             }
-            else if(selected_item[i].get_name() == item.get_name()) {
-                if(selected_item[i].get_number() < 5) {
-                    selected_item[i].increment_number();
-                    selected_item_panel[i].repaint();
-                }
-                else {
-                    res = 1;
-                }
+            else if(selected_item[i].get_name() == name) {
+                selected_item[i].set_quantity(quantity);
+                selected_item[i].repaint();
                 break;
             }
         }
 
         if(i == 5) {
-            res = 2;
+            res = 1;
         }
 
+        return res;
+    }
+
+    public int delete_item(String name) 
+    {
+        int res = 1;
+        int i = 0;
+
+        for(i = 0; i < 5; i++) {
+            if(selected_item[i].get_name() == name) {
+                selected_item[i].set_name("");
+                selected_item[i].set_price(0);
+                selected_item[i].set_quantity(0);
+                selected_item[i].repaint();
+                res = 0;
+                break;
+            }
+        }
+
+        for(i = i + 1 ; i < 5; i++) {
+            selected_item[i - 1].set_name(selected_item[i].get_name());
+            selected_item[i - 1].set_price(selected_item[i].get_price());
+            selected_item[i - 1].set_quantity(selected_item[i].get_quantity());
+            selected_item[i - 1].repaint();
+            selected_item[i].set_name("");
+            selected_item[i].set_price(0);
+            selected_item[i].set_quantity(0);
+            selected_item[i].repaint();
+        }
+        
         return res;
     }
 
@@ -270,7 +319,7 @@ class SelectedItemList extends JPanel {
         int sum = 0;
 
         for(int i = 0; i < 5; i++) {
-            sum += selected_item[i].get_price() * selected_item[i].get_number();
+            sum += selected_item[i].get_price() * selected_item[i].get_quantity();
         }
 
         return sum;
@@ -281,53 +330,24 @@ class SelectedItemList extends JPanel {
         for(int i = 0; i < 5; i++) {
             selected_item[i].set_name("");
             selected_item[i].set_price(0);
-            selected_item[i].set_number(0);
+            selected_item[i].set_quantity(0);
         }
     }
 }
 
 class ChoicesList extends JPanel {
-    SelectedItemList selected_item_list;
     Item[] choices;
-    JButton[] add_button;
-    JPanel[] choices_panel;
 
-    public ChoicesList(Item[] choices, SelectedItemList selected_item_list) 
+    public ChoicesList(Item[] choices, ActionListener action_listener) 
     {
         super(new GridLayout(5,1,5,5));
 
         this.choices = choices;
 
-        this.selected_item_list = selected_item_list;
-
-        add_button = new JButton[5];
-        choices_panel = new JPanel[5];
-
-        for(int i = 0; i < choices.length; i++) {
-            // add_button初期化
-            add_button[i] = new JButton("一つ追加");
-            add_button[i].addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent e){
-                    int index = 0;
-                    JButton	btn = (JButton) e.getSource();
-                    for(int i = 0; i < 5; i++) {
-                        if(btn == add_button[i]) {
-                            index = i;
-                            break;
-                        }
-                    }
-                    selected_item_list.register_item(choices[index]);
-                    selected_item_list.repaint();
-                }
-            });
-
-            // choices_item_panel初期化
-            choices_panel[i] = new JPanel(new BorderLayout());
-            choices_panel[i].add(choices[i], "Center");
-            choices_panel[i].add(add_button[i], "East");
-
-            // 自身に追加
-            this.add(choices_panel[i]);
+        for(int i = 0; i < 5; i++) {
+            this.add(this.choices[i]);
+            // choicesのitem_buttonパラメータを設定
+            this.choices[i].set_button_param("選択", action_listener);
         }
     }
 }
@@ -336,7 +356,7 @@ class AddItemScreen extends JPanel {
     CardLayout layout;
     JPanel container;
 
-    public AddItemScreen(SelectedItemList selected_item_list)
+    public AddItemScreen(ActionListener action_listener)
     {
         super();
 
@@ -428,7 +448,7 @@ class AddItemScreen extends JPanel {
         beer[2] = new Item("大生", 750);
         beer[3] = new Item("中瓶", 640);
         beer[4] = new Item("ノンアルコールビール", 330);
-        ChoicesList beer_list = new ChoicesList(beer, selected_item_list);
+        ChoicesList beer_list = new ChoicesList(beer, action_listener);
         beer_screen.add(beer_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button1 = new JButton("カテゴリ選択に戻る．");
@@ -454,7 +474,7 @@ class AddItemScreen extends JPanel {
         cocktail[2] = new Item("モスコミュール", 400);
         cocktail[3] = new Item("ジントニック", 400);
         cocktail[4] = new Item("ファジーネーブル", 400);
-        ChoicesList cocktail_list = new ChoicesList(cocktail, selected_item_list);
+        ChoicesList cocktail_list = new ChoicesList(cocktail, action_listener);
         cocktail_screen.add(cocktail_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button2 = new JButton("カテゴリ選択に戻る．");
@@ -480,7 +500,7 @@ class AddItemScreen extends JPanel {
         highball[2] = new Item("レモンハイボール", 450);
         highball[3] = new Item("キウイハイボール", 450);
         highball[4] = new Item("コーラハイボール", 450);
-        ChoicesList highball_list = new ChoicesList(highball, selected_item_list);
+        ChoicesList highball_list = new ChoicesList(highball, action_listener);
         highball_screen.add(highball_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button3 = new JButton("カテゴリ選択に戻る．");
@@ -506,7 +526,7 @@ class AddItemScreen extends JPanel {
         yakitori[2] = new Item("豚バラ", 130);
         yakitori[3] = new Item("砂ずり", 130);
         yakitori[4] = new Item("せせり", 130);
-        ChoicesList yakitori_list = new ChoicesList(yakitori, selected_item_list);
+        ChoicesList yakitori_list = new ChoicesList(yakitori, action_listener);
         yakitori_screen.add(yakitori_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button4 = new JButton("カテゴリ選択に戻る．");
@@ -532,7 +552,7 @@ class AddItemScreen extends JPanel {
         sasimi[2] = new Item("いか", 480);
         sasimi[3] = new Item("たこ", 480);
         sasimi[4] = new Item("えび", 480);
-        ChoicesList sasimi_list = new ChoicesList(sasimi, selected_item_list);
+        ChoicesList sasimi_list = new ChoicesList(sasimi, action_listener);
         sasimi_screen.add(sasimi_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button5 = new JButton("カテゴリ選択に戻る．");
@@ -558,7 +578,7 @@ class AddItemScreen extends JPanel {
         salad[2] = new Item("海藻サラダ", 380);
         salad[3] = new Item("グリーンサラダ", 380);
         salad[4] = new Item("シーザーサラダ", 380);
-        ChoicesList salad_list = new ChoicesList(salad, selected_item_list);
+        ChoicesList salad_list = new ChoicesList(salad, action_listener);
         salad_screen.add(salad_list, "Center");
         // カテゴリ選択に戻るボタン作成
         JButton category_button6 = new JButton("カテゴリ選択に戻る．");
@@ -579,12 +599,69 @@ class AddItemScreen extends JPanel {
     }
 }
 
-class BarOrderFrame extends JFrame {
+class SelectQuantityPanel extends JPanel {
+    JLabel item_label;
+    ItemButton[] number_key;
+    ItemButton cancel_order_key;
+
+    public SelectQuantityPanel(ActionListener action_listener) {
+        super(new GridLayout(3, 1, 5, 5));
+
+        // 「数量を選んでください」
+        this.add(new JLabel("数量を選んでください．", JLabel.CENTER));
+
+        // item_label初期化
+        item_label = new JLabel("", JLabel.CENTER);
+        this.add(item_label);
+
+        // コントローラ作成
+        JPanel controller = new JPanel(new BorderLayout());
+        this.add(controller);
+        //// ソフトキーボード作成
+        JPanel soft_keyboard = new JPanel(new GridLayout(1, 6, 5, 5));
+        controller.add(soft_keyboard, "Center");
+        ////// 数字キー
+        number_key = new ItemButton[5];
+        for(int i = 0; i < 5; i++) {
+            number_key[i] = new ItemButton("数字キー", 0, i + 1);
+            soft_keyboard.add(number_key[i]);
+            number_key[i].setText(String.valueOf(i + 1));
+            number_key[i].addActionListener(action_listener);
+        }
+        //// 「注文しない」キー
+        cancel_order_key = new ItemButton();
+        controller.add(cancel_order_key, "East");
+        cancel_order_key.setText("注文しない");
+        cancel_order_key.addActionListener(action_listener);
+    }
+
+    public void set_item(String item_name, int item_price) {
+        // 数字キーの中にデータを格納
+        for(int i = 0; i < 5; i++ ) {
+            this.number_key[i].set_name(item_name);
+            this.number_key[i].set_price(item_price);
+        }
+
+        // 「注文しない」ボタンにデータを格納
+        this.cancel_order_key.set_name(item_name);
+        this.cancel_order_key.set_price(item_price);
+
+        //　item_label変更
+        item_label.setText(item_name + ": " + item_price + "円");
+        this.repaint();
+
+        return;
+    }
+}
+
+class BarOrderFrame extends JFrame implements ActionListener{
     Container container;
     CardLayout container_layout;
     SelectedItemList selected_item_list;
+    AddItemScreen add_item_screen;
+    SelectQuantityPanel select_quantity_panel;
     JLabel total_cost_label;
-    
+
     public BarOrderFrame (String title) {
         super(title);
 
@@ -594,26 +671,25 @@ class BarOrderFrame extends JFrame {
         container_layout = new CardLayout();
         container.setLayout(container_layout);
 
-        // selected_item_list作成
-        selected_item_list = new SelectedItemList();
-
         /*****************************
          * 商品選択画面作成
          *****************************/
         JPanel selecting_item_screen = new JPanel(new GridLayout(1, 2, 5, 5));
         container.add(selecting_item_screen, "selecting_item_screen");
         // 商品追加画面作成
-        AddItemScreen add_item_screen = new AddItemScreen(selected_item_list);
+        AddItemScreen add_item_screen = new AddItemScreen(this);
         selecting_item_screen.add(add_item_screen);
         // 選んだ商品画面作成
         JPanel selected_item_screen = new JPanel(new BorderLayout());
         selecting_item_screen.add(selected_item_screen);
         //// テキスト作成
-        selected_item_screen.add(new JLabel("選んだ商品", JLabel.CENTER), "North");
-        //// selected_item_list画面に追加
+        selected_item_screen.add(new JLabel("注文リスト", JLabel.CENTER), "North");
+        //// selected_item_list作成
+        selected_item_list = new SelectedItemList(this);
         selected_item_screen.add(selected_item_list, "Center");
         //// 注文ボタン作成
         JButton confirm_order_button = new JButton("注文する");
+        selected_item_screen.add(confirm_order_button, "South");
         confirm_order_button.setPreferredSize(new Dimension(100,40));
         confirm_order_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -626,7 +702,25 @@ class BarOrderFrame extends JFrame {
                 }
 			}
         });
-        selected_item_screen.add(confirm_order_button, "South");
+
+        /*****************************
+         * 数量選択画面作成
+         *****************************/
+        JPanel select_quantity_screen = new JPanel(new BorderLayout());
+        container.add(select_quantity_screen, "select_quantity_screen");
+        // 数量選択パネル作成
+        select_quantity_panel = new SelectQuantityPanel(this);
+        select_quantity_screen.add(select_quantity_panel, "Center");
+        // キャンセルボタン作成
+        JButton cancel_button = new JButton("キャンセル");
+        select_quantity_screen.add(cancel_button, "South");
+        cancel_button.setPreferredSize(new Dimension(100,70));
+        cancel_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+                container_layout.show(container, "selecting_item_screen");
+			}
+        });
+
         /*****************************
          * 注文確認画面作成
          *****************************/
@@ -663,6 +757,59 @@ class BarOrderFrame extends JFrame {
         this.setSize(640, 480);
         this.setVisible(true);
     }
+
+    public void actionPerformed(ActionEvent e)
+    {
+        ItemButton	pushed_item_button = (ItemButton)e.getSource();
+
+        /****************************************
+         * 商品選択画面のボタンに対するアクション
+         ****************************************/
+        // 「追加」ボタン
+        if(pushed_item_button.getText() == "選択") {
+            // 数量選択画面に商品を登録
+            select_quantity_panel.set_item(pushed_item_button.get_name(), pushed_item_button.get_price());
+            // 数量選択画面に移動
+            container_layout.show(container, "select_quantity_screen");
+        }
+        // 「数量変更」ボタン
+        else if(pushed_item_button.getText() == "数量変更") {
+            if(pushed_item_button.get_name() != "") {   // 空でないことを確認
+                // 数量選択画面に商品を登録
+                select_quantity_panel.set_item(pushed_item_button.get_name(), pushed_item_button.get_price());
+                // 数量選択画面に移動
+                container_layout.show(container, "select_quantity_screen");
+            }
+        }
+        /****************************************
+         * 数量選択画面のボタンに対するアクション
+         ****************************************/
+        // 「注文しない」ボタン
+        else if(pushed_item_button.getText() == "注文しない") {
+            // 選択された商品リストから商品を削除
+            selected_item_list.delete_item(pushed_item_button.get_name());
+            // 商品選択画面に移動
+            container_layout.show(container, "selecting_item_screen");
+        }
+        // ソフトキーボード
+        else if(Integer.parseInt(pushed_item_button.getText()) == 1
+                    || Integer.parseInt(pushed_item_button.getText()) == 2
+                    || Integer.parseInt(pushed_item_button.getText()) == 3
+                    || Integer.parseInt(pushed_item_button.getText()) == 4
+                    || Integer.parseInt(pushed_item_button.getText()) == 5){
+
+            // 商品を登録
+            if(selected_item_list.is_full()) {
+
+            }
+            else {
+                selected_item_list.register_item(pushed_item_button.name, pushed_item_button.price, pushed_item_button.quantity);
+            }
+            // 商品選択画面に移動
+            container_layout.show(container, "selecting_item_screen");
+        }
+    }
+
     public static void main(String[] args) {
 		BarOrderFrame frame = new BarOrderFrame("居酒屋注文");
 	}
