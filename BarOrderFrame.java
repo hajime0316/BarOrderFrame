@@ -1,4 +1,4 @@
-import javax.swing.*;
+fimport javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -70,15 +70,15 @@ class Item extends JPanel {
     {
         super(new BorderLayout());
 
-        // item_label‚ÌƒeƒLƒXƒgì¬
+        // item_labelã®ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
         String label_text;
         label_text = "";
 
-        // item_label‰Šú‰»
+        // item_labelåˆæœŸåŒ–
         item_label = new JLabel(label_text, JLabel.CENTER);
         this.add(item_label, "Center");
 
-        // item_button‰Šú‰»
+        // item_buttonåˆæœŸåŒ–
         item_button = new ItemButton("", 0, 0);
         this.add(item_button, "East");
     }
@@ -87,20 +87,20 @@ class Item extends JPanel {
     {
         super(new BorderLayout());
 
-        // item_label‚ÌƒeƒLƒXƒgì¬
+        // item_labelã®ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
         String label_text;
         if(name == "") {
             label_text = "";
         }
         else {
-            label_text = name + ": " + price + "‰~";
+            label_text = name + ": " + price + "å††";
         }
 
-        // item_label‰Šú‰»
+        // item_labelåˆæœŸåŒ–
         item_label = new JLabel(label_text, JLabel.CENTER);
         this.add(item_label, "Center");
 
-        // item_button‰Šú‰»
+        // item_buttonåˆæœŸåŒ–
         item_button = new ItemButton(name, price, 0);
         this.add(item_button, "East");
     }
@@ -109,23 +109,23 @@ class Item extends JPanel {
     {
         super(new BorderLayout());
 
-        // item_label‚ÌƒeƒLƒXƒgì¬
+        // item_labelã®ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
         String label_text;
         if(name == "") {
             label_text = "";
         }
         else if(quantity <= 0){
-            label_text = name + ": " + price + "‰~";
+            label_text = name + ": " + price + "å††";
         }
         else {
-            label_text = name + ": " + price + "‰~ ~ " + quantity;
+            label_text = name + ": " + price + "å†† Ã— " + quantity;
         }
 
-        // item_label‰Šú‰»
+        // item_labelåˆæœŸåŒ–
         item_label = new JLabel(label_text, JLabel.CENTER);
         this.add(item_label, "Center");
 
-        // item_button‰Šú‰»
+        // item_buttonåˆæœŸåŒ–
         item_button = new ItemButton(name, price, quantity);
         this.add(item_button, "East");
     }
@@ -134,21 +134,21 @@ class Item extends JPanel {
     {
         String label_text;
 
-        // ƒpƒ‰ƒ[ƒ^•ÏX
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´
         item_button.name = name;
         
-        // ƒeƒLƒXƒg¶¬
+        // ãƒ†ã‚­ã‚¹ãƒˆç”Ÿæˆ
         if(item_button.name == "") {
             label_text = "";
         }
         else if(item_button.quantity <= 0){
-            label_text = item_button.name + ": " + item_button.price + "‰~";
+            label_text = item_button.name + ": " + item_button.price + "å††";
         }
         else {
-            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.quantity;
+            label_text = item_button.name + ": " + item_button.price + "å†† Ã— " + item_button.quantity;
         }
 
-        // ƒeƒLƒXƒgƒZƒbƒg
+        // ãƒ†ã‚­ã‚¹ãƒˆã‚»ãƒƒãƒˆ
         item_label.setText(label_text);
 
         return;
@@ -158,21 +158,21 @@ class Item extends JPanel {
     {
         String label_text;
 
-        // ƒpƒ‰ƒ[ƒ^•ÏX
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´
         item_button.price = price;
 
-        // ƒeƒLƒXƒg¶¬
+        // ãƒ†ã‚­ã‚¹ãƒˆç”Ÿæˆ
         if(item_button.name == "") {
             label_text = "";
         }
         else if(item_button.quantity <= 0){
-            label_text = item_button.name + ": " + item_button.price + "‰~";
+            label_text = item_button.name + ": " + item_button.price + "å††";
         }
         else {
-            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.quantity;
+            label_text = item_button.name + ": " + item_button.price + "å†† Ã— " + item_button.quantity;
         }
 
-        // ƒeƒLƒXƒgƒZƒbƒg
+        // ãƒ†ã‚­ã‚¹ãƒˆã‚»ãƒƒãƒˆ
         item_label.setText(label_text);
 
         return;
@@ -182,21 +182,21 @@ class Item extends JPanel {
     {
         String label_text;
 
-        // ƒpƒ‰ƒ[ƒ^•ÏX
+        // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿å¤‰æ›´
         item_button.quantity = quantity;
 
-        // ƒeƒLƒXƒg¶¬
+        // ãƒ†ã‚­ã‚¹ãƒˆç”Ÿæˆ
         if(item_button.name == "") {
             label_text = "";
         }
         else if(item_button.quantity <= 0){
-            label_text = item_button.name + ": " + item_button.price + "‰~";
+            label_text = item_button.name + ": " + item_button.price + "å††";
         }
         else {
-            label_text = item_button.name + ": " + item_button.price + "‰~ ~ " + item_button.quantity;
+            label_text = item_button.name + ": " + item_button.price + "å†† Ã— " + item_button.quantity;
         }
 
-        // ƒeƒLƒXƒgƒZƒbƒg
+        // ãƒ†ã‚­ã‚¹ãƒˆã‚»ãƒƒãƒˆ
         item_label.setText(label_text);
 
         return;
@@ -236,12 +236,12 @@ class SelectedItemList extends JPanel {
         selected_item = new Item[5];
 
         for(int i = 0; i < 5; i++) {
-            // selected_item‰Šú‰»
+            // selected_itemåˆæœŸåŒ–
             selected_item[i] = new Item();
             this.add(selected_item[i]);
 
-            // selected_item‚Ìƒ{ƒ^ƒ“ƒpƒ‰ƒ[ƒ^‚ğİ’è
-            selected_item[i].set_button_param("”—Ê•ÏX", action_listener);
+            // selected_itemã®ãƒœã‚¿ãƒ³ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®š
+            selected_item[i].set_button_param("æ•°é‡å¤‰æ›´", action_listener);
         }
     }
 
@@ -346,8 +346,8 @@ class ChoicesList extends JPanel {
 
         for(int i = 0; i < 5; i++) {
             this.add(this.choices[i]);
-            // choices‚Ìitem_buttonƒpƒ‰ƒ[ƒ^‚ğİ’è
-            this.choices[i].set_button_param("’Ç‰Á", action_listener);
+            // choicesã®item_buttonãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’è¨­å®š
+            this.choices[i].set_button_param("é¸æŠ", action_listener);
         }
     }
 }
@@ -365,68 +365,68 @@ class AddItemScreen extends JPanel {
         container.setLayout(layout);
         
         /*******************************
-         * ƒJƒeƒSƒŠ‰æ–Êì¬
+         * ã‚«ãƒ†ã‚´ãƒªç”»é¢ä½œæˆ
          *******************************/
         JPanel category_screen = new JPanel(new GridLayout(1, 2, 5, 5));
         container.add(category_screen, "category_screen");
-        // ˆù‚İ•¨‰æ–Êì¬
+        // é£²ã¿ç‰©ç”»é¢ä½œæˆ
         JPanel drink_screen = new JPanel(new BorderLayout());
         category_screen.add(drink_screen);
-        //// ƒeƒLƒXƒgì¬
-        drink_screen.add(new JLabel("ˆù‚İ•¨", JLabel.CENTER), "North");
-        //// ˆù‚İ•¨ƒŠƒXƒgì¬
+        //// ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        drink_screen.add(new JLabel("é£²ã¿ç‰©", JLabel.CENTER), "North");
+        //// é£²ã¿ç‰©ãƒªã‚¹ãƒˆä½œæˆ
         JPanel drink_list = new JPanel(new GridLayout(3, 1, 5, 5));
         drink_screen.add(drink_list, "Center");
-        ////// ƒr[ƒ‹ƒ{ƒ^ƒ“
-        JButton beer_button = new JButton("ƒr[ƒ‹");
+        ////// ãƒ“ãƒ¼ãƒ«ãƒœã‚¿ãƒ³
+        JButton beer_button = new JButton("ãƒ“ãƒ¼ãƒ«");
         drink_list.add(beer_button);
         beer_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "beer_screen");
 			}
         });
-        ////// ƒJƒNƒeƒ‹ƒ{ƒ^ƒ“
-        JButton cocktail_button = new JButton("ƒJƒNƒeƒ‹");
+        ////// ã‚«ã‚¯ãƒ†ãƒ«ãƒœã‚¿ãƒ³
+        JButton cocktail_button = new JButton("ã‚«ã‚¯ãƒ†ãƒ«");
         drink_list.add(cocktail_button);
         cocktail_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "cocktail_screen");
 			}
         });
-        ////// ƒnƒCƒ{[ƒ‹ƒ{ƒ^ƒ“
-        JButton highball_button = new JButton("ƒnƒCƒ{[ƒ‹");
+        ////// ãƒã‚¤ãƒœãƒ¼ãƒ«ãƒœã‚¿ãƒ³
+        JButton highball_button = new JButton("ãƒã‚¤ãƒœãƒ¼ãƒ«");
         drink_list.add(highball_button);
         highball_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "highball_screen");
 			}
         });
-        // —¿—‰æ–Êì¬
+        // æ–™ç†ç”»é¢ä½œæˆ
         JPanel dishes_screen = new JPanel(new BorderLayout());
         category_screen.add(dishes_screen);
-        //// ƒeƒLƒXƒgì¬
-        dishes_screen.add(new JLabel("—¿—", JLabel.CENTER), "North");
-        //// —¿—ƒŠƒXƒgì¬
+        //// ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        dishes_screen.add(new JLabel("æ–™ç†", JLabel.CENTER), "North");
+        //// æ–™ç†ãƒªã‚¹ãƒˆä½œæˆ
         JPanel dishes_list = new JPanel(new GridLayout(3, 1, 5, 5));
         dishes_screen.add(dishes_list, "Center");
-        ////// Ä‚«’¹ƒ{ƒ^ƒ“
-        JButton yakitori_button = new JButton("Ä‚«’¹");
+        ////// ç„¼ãé³¥ãƒœã‚¿ãƒ³
+        JButton yakitori_button = new JButton("ç„¼ãé³¥");
         dishes_list.add(yakitori_button);
         yakitori_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "yakitori_screen");
 			}
         });
-        ////// hgƒ{ƒ^ƒ“
-        JButton sasimi_button = new JButton("hg");
+        ////// åˆºèº«ãƒœã‚¿ãƒ³
+        JButton sasimi_button = new JButton("åˆºèº«");
         dishes_list.add(sasimi_button);
         sasimi_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
                 layout.show(container, "sasimi_screen");
 			}
         });
-        ////// ƒTƒ‰ƒ_ƒ{ƒ^ƒ“
-        JButton salad_button = new JButton("ƒTƒ‰ƒ_");
+        ////// ã‚µãƒ©ãƒ€ãƒœã‚¿ãƒ³
+        JButton salad_button = new JButton("ã‚µãƒ©ãƒ€");
         dishes_list.add(salad_button);
         salad_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -435,23 +435,23 @@ class AddItemScreen extends JPanel {
         });
 
         /*******************************
-         * ƒr[ƒ‹‰æ–Êì¬
+         * ãƒ“ãƒ¼ãƒ«ç”»é¢ä½œæˆ
          *******************************/
         JPanel beer_screen = new JPanel(new BorderLayout());
         container.add(beer_screen, "beer_screen");
-        // ƒeƒLƒXƒgì¬
-        beer_screen.add(new JLabel("ƒr[ƒ‹‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢", JLabel.CENTER), "North");
-        // ¤•iƒŠƒXƒgì¬
+        // ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        beer_screen.add(new JLabel("ãƒ“ãƒ¼ãƒ«ã‚’é¸ã‚“ã§ãã ã•ã„", JLabel.CENTER), "North");
+        // å•†å“ãƒªã‚¹ãƒˆä½œæˆ
         Item[] beer = new Item[5];
-        beer[0] = new Item("¬¶", 390);
-        beer[1] = new Item("’†¶", 490);
-        beer[2] = new Item("‘å¶", 750);
-        beer[3] = new Item("’†•r", 640);
-        beer[4] = new Item("ƒmƒ“ƒAƒ‹ƒR[ƒ‹ƒr[ƒ‹", 330);
+        beer[0] = new Item("å°ç”Ÿ", 390);
+        beer[1] = new Item("ä¸­ç”Ÿ", 490);
+        beer[2] = new Item("å¤§ç”Ÿ", 750);
+        beer[3] = new Item("ä¸­ç“¶", 640);
+        beer[4] = new Item("ãƒãƒ³ã‚¢ãƒ«ã‚³ãƒ¼ãƒ«ãƒ“ãƒ¼ãƒ«", 330);
         ChoicesList beer_list = new ChoicesList(beer, action_listener);
         beer_screen.add(beer_list, "Center");
-        // ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éƒ{ƒ^ƒ“ì¬
-        JButton category_button1 = new JButton("ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éD");
+        // ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ãƒœã‚¿ãƒ³ä½œæˆ
+        JButton category_button1 = new JButton("ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ï¼");
         category_button1.setPreferredSize(new Dimension(100,40));
         category_button1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -461,23 +461,23 @@ class AddItemScreen extends JPanel {
         beer_screen.add(category_button1, "South");
 
         /*******************************
-         * ƒJƒNƒeƒ‹‰æ–Êì¬
+         * ã‚«ã‚¯ãƒ†ãƒ«ç”»é¢ä½œæˆ
          *******************************/
         JPanel cocktail_screen = new JPanel(new BorderLayout());
         container.add(cocktail_screen, "cocktail_screen");
-        // ƒeƒLƒXƒgì¬
-        cocktail_screen.add(new JLabel("ƒJƒNƒeƒ‹‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢", JLabel.CENTER), "North");
-        // ¤•iƒŠƒXƒgì¬
+        // ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        cocktail_screen.add(new JLabel("ã‚«ã‚¯ãƒ†ãƒ«ã‚’é¸ã‚“ã§ãã ã•ã„", JLabel.CENTER), "North");
+        // å•†å“ãƒªã‚¹ãƒˆä½œæˆ
         Item[] cocktail = new Item[5];
-        cocktail[0] = new Item("ƒJƒVƒXƒIƒŒƒ“ƒW", 400);
-        cocktail[1] = new Item("ƒJƒVƒXƒ\[ƒ_", 400);
-        cocktail[2] = new Item("ƒ‚ƒXƒRƒ~ƒ…[ƒ‹", 400);
-        cocktail[3] = new Item("ƒWƒ“ƒgƒjƒbƒN", 400);
-        cocktail[4] = new Item("ƒtƒ@ƒW[ƒl[ƒuƒ‹", 400);
+        cocktail[0] = new Item("ã‚«ã‚·ã‚¹ã‚ªãƒ¬ãƒ³ã‚¸", 400);
+        cocktail[1] = new Item("ã‚«ã‚·ã‚¹ã‚½ãƒ¼ãƒ€", 400);
+        cocktail[2] = new Item("ãƒ¢ã‚¹ã‚³ãƒŸãƒ¥ãƒ¼ãƒ«", 400);
+        cocktail[3] = new Item("ã‚¸ãƒ³ãƒˆãƒ‹ãƒƒã‚¯", 400);
+        cocktail[4] = new Item("ãƒ•ã‚¡ã‚¸ãƒ¼ãƒãƒ¼ãƒ–ãƒ«", 400);
         ChoicesList cocktail_list = new ChoicesList(cocktail, action_listener);
         cocktail_screen.add(cocktail_list, "Center");
-        // ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éƒ{ƒ^ƒ“ì¬
-        JButton category_button2 = new JButton("ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éD");
+        // ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ãƒœã‚¿ãƒ³ä½œæˆ
+        JButton category_button2 = new JButton("ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ï¼");
         category_button2.setPreferredSize(new Dimension(100,40));
         category_button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -487,23 +487,23 @@ class AddItemScreen extends JPanel {
         cocktail_screen.add(category_button2, "South");
 
         /*******************************
-         * ƒnƒCƒ{[ƒ‹‰æ–Êì¬
+         * ãƒã‚¤ãƒœãƒ¼ãƒ«ç”»é¢ä½œæˆ
          *******************************/
         JPanel highball_screen = new JPanel(new BorderLayout());
         container.add(highball_screen, "highball_screen");
-        // ƒeƒLƒXƒgì¬
-        highball_screen.add(new JLabel("ƒnƒCƒ{[ƒ‹‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢", JLabel.CENTER), "North");
-        // ¤•iƒŠƒXƒgì¬
+        // ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        highball_screen.add(new JLabel("ãƒã‚¤ãƒœãƒ¼ãƒ«ã‚’é¸ã‚“ã§ãã ã•ã„", JLabel.CENTER), "North");
+        // å•†å“ãƒªã‚¹ãƒˆä½œæˆ
         Item[] highball = new Item[5];
-        highball[0] = new Item("‚ä‚¸ƒnƒCƒ{[ƒ‹", 450);
-        highball[1] = new Item("ƒWƒ“ƒWƒƒ[ƒnƒCƒ{[ƒ‹", 450);
-        highball[2] = new Item("ƒŒƒ‚ƒ“ƒnƒCƒ{[ƒ‹", 450);
-        highball[3] = new Item("ƒLƒEƒCƒnƒCƒ{[ƒ‹", 450);
-        highball[4] = new Item("ƒR[ƒ‰ƒnƒCƒ{[ƒ‹", 450);
+        highball[0] = new Item("ã‚†ãšãƒã‚¤ãƒœãƒ¼ãƒ«", 450);
+        highball[1] = new Item("ã‚¸ãƒ³ã‚¸ãƒ£ãƒ¼ãƒã‚¤ãƒœãƒ¼ãƒ«", 450);
+        highball[2] = new Item("ãƒ¬ãƒ¢ãƒ³ãƒã‚¤ãƒœãƒ¼ãƒ«", 450);
+        highball[3] = new Item("ã‚­ã‚¦ã‚¤ãƒã‚¤ãƒœãƒ¼ãƒ«", 450);
+        highball[4] = new Item("ã‚³ãƒ¼ãƒ©ãƒã‚¤ãƒœãƒ¼ãƒ«", 450);
         ChoicesList highball_list = new ChoicesList(highball, action_listener);
         highball_screen.add(highball_list, "Center");
-        // ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éƒ{ƒ^ƒ“ì¬
-        JButton category_button3 = new JButton("ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éD");
+        // ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ãƒœã‚¿ãƒ³ä½œæˆ
+        JButton category_button3 = new JButton("ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ï¼");
         category_button3.setPreferredSize(new Dimension(100,40));
         category_button3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -513,23 +513,23 @@ class AddItemScreen extends JPanel {
         highball_screen.add(category_button3, "South");
 
         /*******************************
-         * Ä‚«’¹‰æ–Êì¬
+         * ç„¼ãé³¥ç”»é¢ä½œæˆ
          *******************************/
         JPanel yakitori_screen = new JPanel(new BorderLayout());
         container.add(yakitori_screen, "yakitori_screen");
-        // ƒeƒLƒXƒgì¬
-        yakitori_screen.add(new JLabel("Ä‚«’¹‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢D", JLabel.CENTER), "North");
-        // ¤•iƒŠƒXƒgì¬
+        // ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        yakitori_screen.add(new JLabel("ç„¼ãé³¥ã‚’é¸ã‚“ã§ãã ã•ã„ï¼", JLabel.CENTER), "North");
+        // å•†å“ãƒªã‚¹ãƒˆä½œæˆ
         Item[] yakitori = new Item[5];
-        yakitori[0] = new Item("”ç", 130);
-        yakitori[1] = new Item("‚à‚à", 130);
-        yakitori[2] = new Item("“Øƒoƒ‰", 130);
-        yakitori[3] = new Item("»‚¸‚è", 130);
-        yakitori[4] = new Item("‚¹‚¹‚è", 130);
+        yakitori[0] = new Item("çš®", 130);
+        yakitori[1] = new Item("ã‚‚ã‚‚", 130);
+        yakitori[2] = new Item("è±šãƒãƒ©", 130);
+        yakitori[3] = new Item("ç ‚ãšã‚Š", 130);
+        yakitori[4] = new Item("ã›ã›ã‚Š", 130);
         ChoicesList yakitori_list = new ChoicesList(yakitori, action_listener);
         yakitori_screen.add(yakitori_list, "Center");
-        // ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éƒ{ƒ^ƒ“ì¬
-        JButton category_button4 = new JButton("ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éD");
+        // ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ãƒœã‚¿ãƒ³ä½œæˆ
+        JButton category_button4 = new JButton("ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ï¼");
         yakitori_screen.add(category_button4, "South");
         category_button4.setPreferredSize(new Dimension(100,40));
         category_button4.addActionListener(new ActionListener(){
@@ -539,23 +539,23 @@ class AddItemScreen extends JPanel {
         });
 
         /*******************************
-         * hg‰æ–Êì¬
+         * åˆºèº«ç”»é¢ä½œæˆ
          *******************************/
         JPanel sasimi_screen = new JPanel(new BorderLayout());
         container.add(sasimi_screen, "sasimi_screen");
-        // ƒeƒLƒXƒgì¬
-        sasimi_screen.add(new JLabel("hg‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢D", JLabel.CENTER), "North");
-        // ¤•iƒŠƒXƒgì¬
+        // ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        sasimi_screen.add(new JLabel("åˆºèº«ã‚’é¸ã‚“ã§ãã ã•ã„ï¼", JLabel.CENTER), "North");
+        // å•†å“ãƒªã‚¹ãƒˆä½œæˆ
         Item[] sasimi = new Item[5];
-        sasimi[0] = new Item("‚Ü‚®‚ë", 580);
-        sasimi[1] = new Item("ƒT[ƒ‚ƒ“", 480);
-        sasimi[2] = new Item("‚¢‚©", 480);
-        sasimi[3] = new Item("‚½‚±", 480);
-        sasimi[4] = new Item("‚¦‚Ñ", 480);
+        sasimi[0] = new Item("ã¾ãã‚", 580);
+        sasimi[1] = new Item("ã‚µãƒ¼ãƒ¢ãƒ³", 480);
+        sasimi[2] = new Item("ã„ã‹", 480);
+        sasimi[3] = new Item("ãŸã“", 480);
+        sasimi[4] = new Item("ãˆã³", 480);
         ChoicesList sasimi_list = new ChoicesList(sasimi, action_listener);
         sasimi_screen.add(sasimi_list, "Center");
-        // ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éƒ{ƒ^ƒ“ì¬
-        JButton category_button5 = new JButton("ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éD");
+        // ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ãƒœã‚¿ãƒ³ä½œæˆ
+        JButton category_button5 = new JButton("ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ï¼");
         sasimi_screen.add(category_button5, "South");
         category_button5.setPreferredSize(new Dimension(100,40));
         category_button5.addActionListener(new ActionListener(){
@@ -565,23 +565,23 @@ class AddItemScreen extends JPanel {
         });
         
         /*******************************
-         * ƒTƒ‰ƒ_‰æ–Êì¬
+         * ã‚µãƒ©ãƒ€ç”»é¢ä½œæˆ
          *******************************/
         JPanel salad_screen = new JPanel(new BorderLayout());
         container.add(salad_screen, "salad_screen");
-        // ƒeƒLƒXƒgì¬
-        salad_screen.add(new JLabel("ƒTƒ‰ƒ_‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢D", JLabel.CENTER), "North");
-        // ¤•iƒŠƒXƒgì¬
+        // ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        salad_screen.add(new JLabel("ã‚µãƒ©ãƒ€ã‚’é¸ã‚“ã§ãã ã•ã„ï¼", JLabel.CENTER), "North");
+        // å•†å“ãƒªã‚¹ãƒˆä½œæˆ
         Item[] salad = new Item[5];
-        salad[0] = new Item("ƒ|ƒeƒgƒTƒ‰ƒ_", 380);
-        salad[1] = new Item("ƒgƒ}ƒgƒTƒ‰ƒ_", 380);
-        salad[2] = new Item("ŠC‘”ƒTƒ‰ƒ_", 380);
-        salad[3] = new Item("ƒOƒŠ[ƒ“ƒTƒ‰ƒ_", 380);
-        salad[4] = new Item("ƒV[ƒU[ƒTƒ‰ƒ_", 380);
+        salad[0] = new Item("ãƒãƒ†ãƒˆã‚µãƒ©ãƒ€", 380);
+        salad[1] = new Item("ãƒˆãƒãƒˆã‚µãƒ©ãƒ€", 380);
+        salad[2] = new Item("æµ·è—»ã‚µãƒ©ãƒ€", 380);
+        salad[3] = new Item("ã‚°ãƒªãƒ¼ãƒ³ã‚µãƒ©ãƒ€", 380);
+        salad[4] = new Item("ã‚·ãƒ¼ã‚¶ãƒ¼ã‚µãƒ©ãƒ€", 380);
         ChoicesList salad_list = new ChoicesList(salad, action_listener);
         salad_screen.add(salad_list, "Center");
-        // ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éƒ{ƒ^ƒ“ì¬
-        JButton category_button6 = new JButton("ƒJƒeƒSƒŠ‘I‘ğ‚É–ß‚éD");
+        // ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ãƒœã‚¿ãƒ³ä½œæˆ
+        JButton category_button6 = new JButton("ã‚«ãƒ†ã‚´ãƒªé¸æŠã«æˆ»ã‚‹ï¼");
         salad_screen.add(category_button6, "South");
         category_button6.setPreferredSize(new Dimension(100,40));
         category_button6.addActionListener(new ActionListener(){
@@ -607,47 +607,47 @@ class SelectQuantityPanel extends JPanel {
     public SelectQuantityPanel(ActionListener action_listener) {
         super(new GridLayout(3, 1, 5, 5));
 
-        // u”—Ê‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢v
-        this.add(new JLabel("”—Ê‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢D", JLabel.CENTER));
+        // ã€Œæ•°é‡ã‚’é¸ã‚“ã§ãã ã•ã„ã€
+        this.add(new JLabel("æ•°é‡ã‚’é¸ã‚“ã§ãã ã•ã„ï¼", JLabel.CENTER));
 
-        // item_label‰Šú‰»
+        // item_labelåˆæœŸåŒ–
         item_label = new JLabel("", JLabel.CENTER);
         this.add(item_label);
 
-        // ƒRƒ“ƒgƒ[ƒ‰ì¬
+        // ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ä½œæˆ
         JPanel controller = new JPanel(new BorderLayout());
         this.add(controller);
-        //// ƒ\ƒtƒgƒL[ƒ{[ƒhì¬
+        //// ã‚½ãƒ•ãƒˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ä½œæˆ
         JPanel soft_keyboard = new JPanel(new GridLayout(1, 6, 5, 5));
         controller.add(soft_keyboard, "Center");
-        ////// ”šƒL[
+        ////// æ•°å­—ã‚­ãƒ¼
         number_key = new ItemButton[5];
         for(int i = 0; i < 5; i++) {
-            number_key[i] = new ItemButton("”šƒL[", 0, i + 1);
+            number_key[i] = new ItemButton("æ•°å­—ã‚­ãƒ¼", 0, i + 1);
             soft_keyboard.add(number_key[i]);
             number_key[i].setText(String.valueOf(i + 1));
             number_key[i].addActionListener(action_listener);
         }
-        //// u’•¶‚µ‚È‚¢vƒL[
+        //// ã€Œæ³¨æ–‡ã—ãªã„ã€ã‚­ãƒ¼
         cancel_order_key = new ItemButton();
         controller.add(cancel_order_key, "East");
-        cancel_order_key.setText("’•¶‚µ‚È‚¢");
+        cancel_order_key.setText("æ³¨æ–‡ã—ãªã„");
         cancel_order_key.addActionListener(action_listener);
     }
 
     public void set_item(String item_name, int item_price) {
-        // ”šƒL[‚Ì’†‚Éƒf[ƒ^‚ğŠi”[
+        // æ•°å­—ã‚­ãƒ¼ã®ä¸­ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
         for(int i = 0; i < 5; i++ ) {
             this.number_key[i].set_name(item_name);
             this.number_key[i].set_price(item_price);
         }
 
-        // u’•¶‚µ‚È‚¢vƒ{ƒ^ƒ“‚Éƒf[ƒ^‚ğŠi”[
+        // ã€Œæ³¨æ–‡ã—ãªã„ã€ãƒœã‚¿ãƒ³ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
         this.cancel_order_key.set_name(item_name);
         this.cancel_order_key.set_price(item_price);
 
-        //@item_label•ÏX
-        item_label.setText(item_name + ": " + item_price + "‰~");
+        //ã€€item_labelå¤‰æ›´
+        item_label.setText(item_name + ": " + item_price + "å††");
         this.repaint();
 
         return;
@@ -672,23 +672,23 @@ class BarOrderFrame extends JFrame implements ActionListener{
         container.setLayout(container_layout);
 
         /*****************************
-         * ¤•i‘I‘ğ‰æ–Êì¬
+         * å•†å“é¸æŠç”»é¢ä½œæˆ
          *****************************/
         JPanel selecting_item_screen = new JPanel(new GridLayout(1, 2, 5, 5));
         container.add(selecting_item_screen, "selecting_item_screen");
-        // ¤•i’Ç‰Á‰æ–Êì¬
+        // å•†å“è¿½åŠ ç”»é¢ä½œæˆ
         AddItemScreen add_item_screen = new AddItemScreen(this);
         selecting_item_screen.add(add_item_screen);
-        // ‘I‚ñ‚¾¤•i‰æ–Êì¬
+        // é¸ã‚“ã å•†å“ç”»é¢ä½œæˆ
         JPanel selected_item_screen = new JPanel(new BorderLayout());
         selecting_item_screen.add(selected_item_screen);
-        //// ƒeƒLƒXƒgì¬
-        selected_item_screen.add(new JLabel("‘I‚ñ‚¾¤•i", JLabel.CENTER), "North");
-        //// selected_item_listì¬
+        //// ãƒ†ã‚­ã‚¹ãƒˆä½œæˆ
+        selected_item_screen.add(new JLabel("æ³¨æ–‡ãƒªã‚¹ãƒˆ", JLabel.CENTER), "North");
+        //// selected_item_listä½œæˆ
         selected_item_list = new SelectedItemList(this);
         selected_item_screen.add(selected_item_list, "Center");
-        //// ’•¶ƒ{ƒ^ƒ“ì¬
-        JButton confirm_order_button = new JButton("’•¶‚·‚é");
+        //// æ³¨æ–‡ãƒœã‚¿ãƒ³ä½œæˆ
+        JButton confirm_order_button = new JButton("æ³¨æ–‡ã™ã‚‹");
         selected_item_screen.add(confirm_order_button, "South");
         confirm_order_button.setPreferredSize(new Dimension(100,40));
         confirm_order_button.addActionListener(new ActionListener(){
@@ -698,21 +698,21 @@ class BarOrderFrame extends JFrame implements ActionListener{
                 }
                 else {
                     container_layout.show(container, "confirm_order_screen");
-                    total_cost_label.setText("‡Œv‹àŠz‚Í " + selected_item_list.sum_all_item_price() + "‰~‚Å‚·");
+                    total_cost_label.setText("åˆè¨ˆé‡‘é¡ã¯ " + selected_item_list.sum_all_item_price() + "å††ã§ã™");
                 }
 			}
         });
 
         /*****************************
-         * ”—Ê‘I‘ğ‰æ–Êì¬
+         * æ•°é‡é¸æŠç”»é¢ä½œæˆ
          *****************************/
         JPanel select_quantity_screen = new JPanel(new BorderLayout());
         container.add(select_quantity_screen, "select_quantity_screen");
-        // ”—Ê‘I‘ğƒpƒlƒ‹ì¬
+        // æ•°é‡é¸æŠãƒ‘ãƒãƒ«ä½œæˆ
         select_quantity_panel = new SelectQuantityPanel(this);
         select_quantity_screen.add(select_quantity_panel, "Center");
-        // ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“ì¬
-        JButton cancel_button = new JButton("ƒLƒƒƒ“ƒZƒ‹");
+        // ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³ä½œæˆ
+        JButton cancel_button = new JButton("ã‚­ãƒ£ãƒ³ã‚»ãƒ«");
         select_quantity_screen.add(cancel_button, "South");
         cancel_button.setPreferredSize(new Dimension(100,70));
         cancel_button.addActionListener(new ActionListener(){
@@ -722,20 +722,20 @@ class BarOrderFrame extends JFrame implements ActionListener{
         });
 
         /*****************************
-         * ’•¶Šm”F‰æ–Êì¬
+         * æ³¨æ–‡ç¢ºèªç”»é¢ä½œæˆ
          *****************************/
         JPanel confirm_order_screen = new JPanel(new GridLayout(3, 1, 5, 5));
         container.add(confirm_order_screen, "confirm_order_screen");
-        // ‡Œv‹àŠz‚ÍEEE‰~‚Å‚·
-        total_cost_label = new JLabel("‡Œv‹àŠz‚ÍEEE‰~‚Å‚·", JLabel.CENTER);
+        // åˆè¨ˆé‡‘é¡ã¯ãƒ»ãƒ»ãƒ»å††ã§ã™
+        total_cost_label = new JLabel("åˆè¨ˆé‡‘é¡ã¯ãƒ»ãƒ»ãƒ»å††ã§ã™", JLabel.CENTER);
         confirm_order_screen.add(total_cost_label);
-        // ’•¶‚µ‚Ü‚·‚©
-        confirm_order_screen.add(new JLabel("’•¶‚µ‚Ü‚·‚©", JLabel.CENTER));
-        // u‚Í‚¢vu‚¢‚¢‚¦vƒ{ƒ^ƒ“ì¬
+        // æ³¨æ–‡ã—ã¾ã™ã‹
+        confirm_order_screen.add(new JLabel("æ³¨æ–‡ã—ã¾ã™ã‹", JLabel.CENTER));
+        // ã€Œã¯ã„ã€ã€Œã„ã„ãˆã€ãƒœã‚¿ãƒ³ä½œæˆ
         JPanel yes_no_panel = new JPanel(new GridLayout(1, 2, 5, 5));
         confirm_order_screen.add(yes_no_panel);
-        //// u‚Í‚¢vƒ{ƒ^ƒ“
-        JButton yes_button = new JButton("‚Í‚¢");
+        //// ã€Œã¯ã„ã€ãƒœã‚¿ãƒ³
+        JButton yes_button = new JButton("ã¯ã„");
         yes_no_panel.add(yes_button);
         yes_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -744,8 +744,8 @@ class BarOrderFrame extends JFrame implements ActionListener{
                 add_item_screen.show_category_screen();
 			}
         });
-        //// u‚¢‚¢‚¦vƒ{ƒ^ƒ“
-        JButton no_button = new JButton("‚¢‚¢‚¦");
+        //// ã€Œã„ã„ãˆã€ãƒœã‚¿ãƒ³
+        JButton no_button = new JButton("ã„ã„ãˆ");
         yes_no_panel.add(no_button);
         no_button.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -763,54 +763,54 @@ class BarOrderFrame extends JFrame implements ActionListener{
         ItemButton	pushed_item_button = (ItemButton)e.getSource();
 
         /****************************************
-         * ¤•i‘I‘ğ‰æ–Ê‚Ìƒ{ƒ^ƒ“‚É‘Î‚·‚éƒAƒNƒVƒ‡ƒ“
+         * å•†å“é¸æŠç”»é¢ã®ãƒœã‚¿ãƒ³ã«å¯¾ã™ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
          ****************************************/
-        // u’Ç‰Ávƒ{ƒ^ƒ“
-        if(pushed_item_button.getText() == "’Ç‰Á") {
-            // ”—Ê‘I‘ğ‰æ–Ê‚É¤•i‚ğ“o˜^
+        // ã€Œè¿½åŠ ã€ãƒœã‚¿ãƒ³
+        if(pushed_item_button.getText() == "é¸æŠ") {
+            // æ•°é‡é¸æŠç”»é¢ã«å•†å“ã‚’ç™»éŒ²
             select_quantity_panel.set_item(pushed_item_button.get_name(), pushed_item_button.get_price());
-            // ”—Ê‘I‘ğ‰æ–Ê‚ÉˆÚ“®
+            // æ•°é‡é¸æŠç”»é¢ã«ç§»å‹•
             container_layout.show(container, "select_quantity_screen");
         }
-        // u”—Ê•ÏXvƒ{ƒ^ƒ“
-        else if(pushed_item_button.getText() == "”—Ê•ÏX") {
-            if(pushed_item_button.get_name() != "") {   // ‹ó‚Å‚È‚¢‚±‚Æ‚ğŠm”F
-                // ”—Ê‘I‘ğ‰æ–Ê‚É¤•i‚ğ“o˜^
+        // ã€Œæ•°é‡å¤‰æ›´ã€ãƒœã‚¿ãƒ³
+        else if(pushed_item_button.getText() == "æ•°é‡å¤‰æ›´") {
+            if(pushed_item_button.get_name() != "") {   // ç©ºã§ãªã„ã“ã¨ã‚’ç¢ºèª
+                // æ•°é‡é¸æŠç”»é¢ã«å•†å“ã‚’ç™»éŒ²
                 select_quantity_panel.set_item(pushed_item_button.get_name(), pushed_item_button.get_price());
-                // ”—Ê‘I‘ğ‰æ–Ê‚ÉˆÚ“®
+                // æ•°é‡é¸æŠç”»é¢ã«ç§»å‹•
                 container_layout.show(container, "select_quantity_screen");
             }
         }
         /****************************************
-         * ”—Ê‘I‘ğ‰æ–Ê‚Ìƒ{ƒ^ƒ“‚É‘Î‚·‚éƒAƒNƒVƒ‡ƒ“
+         * æ•°é‡é¸æŠç”»é¢ã®ãƒœã‚¿ãƒ³ã«å¯¾ã™ã‚‹ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
          ****************************************/
-        // u’•¶‚µ‚È‚¢vƒ{ƒ^ƒ“
-        else if(pushed_item_button.getText() == "’•¶‚µ‚È‚¢") {
-            // ‘I‘ğ‚³‚ê‚½¤•iƒŠƒXƒg‚©‚ç¤•i‚ğíœ
+        // ã€Œæ³¨æ–‡ã—ãªã„ã€ãƒœã‚¿ãƒ³
+        else if(pushed_item_button.getText() == "æ³¨æ–‡ã—ãªã„") {
+            // é¸æŠã•ã‚ŒãŸå•†å“ãƒªã‚¹ãƒˆã‹ã‚‰å•†å“ã‚’å‰Šé™¤
             selected_item_list.delete_item(pushed_item_button.get_name());
-            // ¤•i‘I‘ğ‰æ–Ê‚ÉˆÚ“®
+            // å•†å“é¸æŠç”»é¢ã«ç§»å‹•
             container_layout.show(container, "selecting_item_screen");
         }
-        // ƒ\ƒtƒgƒL[ƒ{[ƒh
+        // ã‚½ãƒ•ãƒˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰
         else if(Integer.parseInt(pushed_item_button.getText()) == 1
                     || Integer.parseInt(pushed_item_button.getText()) == 2
                     || Integer.parseInt(pushed_item_button.getText()) == 3
                     || Integer.parseInt(pushed_item_button.getText()) == 4
                     || Integer.parseInt(pushed_item_button.getText()) == 5){
 
-            // ¤•i‚ğ“o˜^
+            // å•†å“ã‚’ç™»éŒ²
             if(selected_item_list.is_full()) {
 
             }
             else {
                 selected_item_list.register_item(pushed_item_button.name, pushed_item_button.price, pushed_item_button.quantity);
             }
-            // ¤•i‘I‘ğ‰æ–Ê‚ÉˆÚ“®
+            // å•†å“é¸æŠç”»é¢ã«ç§»å‹•
             container_layout.show(container, "selecting_item_screen");
         }
     }
 
     public static void main(String[] args) {
-		BarOrderFrame frame = new BarOrderFrame("‹ğ‰®’•¶");
+		BarOrderFrame frame = new BarOrderFrame("å±…é…’å±‹æ³¨æ–‡");
 	}
 }
